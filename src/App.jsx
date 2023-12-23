@@ -1,10 +1,20 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import bananLogo from "./assets/bananazon.png";
+import Homepage from "./components/Homepage";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
 function App() {
-  return <></>;
+  return (
+    <BrowserRouter>
+      <div>
+        <img id="logo-image" src={bananLogo} />
+        <h1>HELLO WORLD!</h1>
+      </div>
+      <Routes>
+        <Route path="/" element={<Homepage />}></Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
