@@ -3,15 +3,30 @@
   margin: 0 auto;
   padding: 1rem;
   text-align: center;
-
-  box-sizing: border-box;
 }
 html {
   background-color: aqua;
 }
 
 #logo-image {
-  width: 150px;
+  width: 75px;
   margin-right: 10px;
-  margin-top: 10px;
+  margin-top: 20px;
+}
+
+#cart-image {
+  width: 25px;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.navbar {
+  width: 100%;
+  border-style: double;
+  border: black, 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: aqua;
 }
