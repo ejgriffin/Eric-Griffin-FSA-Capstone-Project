@@ -1,6 +1,7 @@
 import React from "react";
 import bananLogo from "./assets/bananazon.png";
 import cartLogo from "./assets/cart.png";
+
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
@@ -11,8 +12,8 @@ export default function Navbar() {
       </Link>
 
       <label>
-        Search Products:
-        <input type="text" />
+        <input type="text" style={{ width: "500px" }} />
+        <button>Search</button>
       </label>
       <Link to={"/login"}>Login</Link>
       <Link to={"/cart"}>
