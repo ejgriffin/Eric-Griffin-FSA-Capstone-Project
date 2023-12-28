@@ -4,19 +4,21 @@
   padding: 1rem;
 }
 html {
-  background-color: aqua;
+  background-color: aquamarine;
 }
 
 #logo-image {
   width: 75px;
   margin-right: 10px;
   margin-top: 20px;
+  padding-left: 10px;
 }
 
 #cart-image {
   width: 25px;
   margin-right: 10px;
   margin-top: 20px;
+  padding-right: 10px;
 }
 
 .navbar {
@@ -25,18 +27,42 @@ html {
   border: black, 20px;
   box-sizing: border-box;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background-color: aqua;
 }
 
 .products-list {
   display: grid;
-  grid-template-columns: repeat(6, 25%);
-  grid-column-gap: 2px;
-  justify-content: space-around;
 
+  grid-template-columns: repeat(5, 26%);
+  grid-column-gap: 5px;
+
+  justify-content: space-around;
+  align-items: center;
   width: 70em;
   padding-left: 4rem;
   padding-top: 1rem;
+}
+
+.product-link {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: paleturquoise;
+  margin-bottom: 10px;
+}
+.categories {
+  width: 100%;
+  border-style: double;
+  border: black, 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: lightblue;
+  padding: 5px;
 }
