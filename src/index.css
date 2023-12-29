@@ -1,7 +1,7 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 1;
 }
 html {
   background-color: aquamarine;
@@ -22,11 +22,14 @@ html {
 }
 
 .navbar {
+  position: fixed;
+  right: 0;
+  top: 0;
   width: 100%;
   border-style: double;
   border: black, 20px;
   box-sizing: border-box;
-  display: flex;
+  display: inline-flex;
   justify-content: space-between;
   align-items: center;
   background-color: aqua;
@@ -42,7 +45,7 @@ html {
   align-items: center;
   width: 70em;
   padding-left: 4rem;
-  padding-top: 1rem;
+  padding-top: 4rem;
 }
 
 .product-link {
@@ -52,10 +55,14 @@ html {
   align-items: center;
   padding-left: 5px;
   padding-right: 5px;
-  background-color: paleturquoise;
+  background-color: aqua;
   margin-bottom: 10px;
 }
 .categories {
+  position: fixed;
+  right: 0;
+  top: 40px;
+  margin-top: 18px;
   width: 100%;
   border-style: double;
   border: black, 20px;
@@ -63,7 +70,7 @@ html {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: lightblue;
+  background-color: aqua;
   padding: 5px;
 }
 .single-product {
@@ -72,6 +79,9 @@ html {
   border: black, 20px;
   align-items: center;
   padding: 50px;
+  padding-top: 4rem;
+  margin-top: 4rem;
+  background-color: aqua;
 }
 
 .productImage2 {
