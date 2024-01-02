@@ -8,17 +8,17 @@ html {
 }
 
 #logo-image {
-  width: 75px;
+  width: 85px;
   margin-right: 10px;
   margin-top: 20px;
-  padding-left: 10px;
+  padding-left: 30px;
 }
 
 #cart-image {
   width: 25px;
   margin-right: 10px;
   margin-top: 20px;
-  padding-right: 10px;
+  padding-right: 20px;
 }
 
 .navbar {

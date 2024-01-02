@@ -21,3 +21,21 @@ export const getProductById = async (id) => {
     throw error;
   }
 };
+
+export const loginUser = async (userObj) => {
+  try {
+    const rsp = await fetch(`${APIURL}/auth/login`, {
+      method: "POST",
+
+      body: JSON.stringify({
+        username: userObj.username,
+        password: userObj.password,
+      }),
+    });
+    const json = await rsp.json();
+
+    return json.token;
+  } catch (err) {
+    console.error(err);
+  }
+};
