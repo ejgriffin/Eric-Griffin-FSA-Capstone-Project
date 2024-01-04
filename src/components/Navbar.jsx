@@ -3,7 +3,7 @@ import bananLogo from "./assets/bananazon.png";
 import cartLogo from "./assets/cart.png";
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({ token, setToken, user, setUser }) {
   return (
     <div>
       <div className="navbar">
@@ -19,8 +19,20 @@ export default function Navbar() {
           />
           <button>Search</button>
         </div>
+        {!token && <Link to="/login">Login</Link>}
+        {token && (
+          <Link
+            to="/login"
+            onClick={() => {
+              setUser(null);
+              localStorage.removeItem("token");
+              setToken(null);
+            }}
+          >
+            Logout
+          </Link>
+        )}
 
-        <Link to={"/login"}>Login</Link>
         <Link to={"/cart"}>
           <img id="cart-image" src={cartLogo} />
         </Link>

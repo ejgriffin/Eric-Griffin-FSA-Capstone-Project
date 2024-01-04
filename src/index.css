@@ -91,3 +91,40 @@ html {
 .productImage {
   border: 1px solid black;
 }
+
+.login-page {
+  display: inline-block;
+  border-style: double;
+  border: black, 20px;
+  align-items: center;
+  padding: 50px;
+  padding-top: 4rem;
+  margin-top: 4rem;
+  background-color: aqua;
+}
+
+.register-link {
+  align-content: center;
+  margin-top: 30px;
+  padding-top: 10px;
+}
+
+.register-page {
+  display: flex;
+  border-style: double;
+  border: black, 20px;
+  align-items: center;
+  padding: 50px;
+  padding-top: 4rem;
+  margin-top: 4rem;
+  background-color: aqua;
+}
+.register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.register-form > label {
+  padding: 10px;
+}
