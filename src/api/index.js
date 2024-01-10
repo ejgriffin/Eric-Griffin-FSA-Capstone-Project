@@ -65,30 +65,11 @@ export const registerUser = async (userObj) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        email: userObj.email,
-        username: userObj.username,
-        password: userObj.password,
-        name: {
-          firstname: userObj.firstname,
-          lastname: userObj.lastname,
-        },
-        address: {
-          city: userObj.city,
-          street: userObj.street,
-          number: userObj.number,
-          zipcode: userObj.zipcode,
-          geolocation: {
-            lat: userObj.lat,
-            long: userObj.long,
-          },
-        },
-        phone: userObj.phone,
-      }),
+      body: JSON.stringify(userObj),
     });
     const json = await rsp.json();
     console.log("registerUser", json);
-    return json.token;
+    return json;
   } catch (err) {
     console.error(err);
   }
