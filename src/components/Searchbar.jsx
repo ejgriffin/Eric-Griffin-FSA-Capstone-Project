@@ -1,3 +1,5 @@
+//This component is dysfunctional.
+
 // import React, { useState, useEffect } from "react";
 // import { getAllProducts } from "../api";
 

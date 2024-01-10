@@ -43,6 +43,21 @@ export const loginUser = async (userObj) => {
   }
 };
 
+export const getUser = async (token) => {
+  try {
+    const rsp = await fetch(`${APIURL}/auth/login`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const json = await rsp.json();
+    return json;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const registerUser = async (userObj) => {
   try {
     const rsp = await fetch(`${APIURL}/users`, {
@@ -55,17 +70,17 @@ export const registerUser = async (userObj) => {
         username: userObj.username,
         password: userObj.password,
         name: {
-          firstname: userObj.name.firstname,
-          lastname: userObj.name.lastname,
+          firstname: userObj.firstname,
+          lastname: userObj.lastname,
         },
         address: {
-          city: userObj.address.city,
-          street: userObj.address.street,
-          number: userObj.address.number,
-          zipcode: userObj.address.zipcode,
+          city: userObj.city,
+          street: userObj.street,
+          number: userObj.number,
+          zipcode: userObj.zipcode,
           geolocation: {
-            lat: userObj.geolocation.lat,
-            long: userObj.geolocation.long,
+            lat: userObj.lat,
+            long: userObj.long,
           },
         },
         phone: userObj.phone,

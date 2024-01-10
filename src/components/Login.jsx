@@ -26,7 +26,7 @@ export default function Login({ setToken }) {
 
   return (
     <div className="login-page">
-      <form name="login" onSubmit={handleSubmit}>
+      <form name="login" className="login-form" onSubmit={handleSubmit}>
         <label>
           {" "}
           Username:{" "}

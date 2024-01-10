@@ -8,6 +8,8 @@ import ShoppingCart from "./components/ShoppingCart";
 import SingleProduct from "./components/SingleProduct";
 import Products from "./components/Products";
 import { loginUser } from "./api";
+import { getUser } from "./api";
+import Success from "./components/Success";
 
 function App() {
   const [token, setToken] = useState(null);
@@ -18,22 +20,21 @@ function App() {
     if (localToken !== undefined) setToken(localToken);
   }, []);
 
-  useEffect(() => {
-    if (token !== null && token !== undefined) {
-      console.log(token);
-      async function fetchUser(token) {
-        try {
-          const nextUser = await loginUser(token);
+  // useEffect(() => {
+  //   if (token !== null && token !== undefined) {
+  //     console.log(token);
+  //     async function fetchUser(token) {
+  //       try {
+  //         const nextUser = await getUser(token);
+  //         setUser(nextUser);
+  //       } catch (err) {
+  //         console.log(err);
+  //       }
+  //     }
 
-          setUser(nextUser);
-        } catch (err) {
-          console.log(err);
-        }
-      }
-
-      fetchUser(token);
-    }
-  }, [token]);
+  //     fetchUser(token);
+  //   }
+  // }, [token]);
 
   return (
     <BrowserRouter>
@@ -42,6 +43,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Products />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/success" element={<Success />} />
         <Route path="/login" element={<Login setToken={setToken} />} />
         <Route path="/cart" element={<ShoppingCart />} />
         <Route path="*" element={<Products />} />

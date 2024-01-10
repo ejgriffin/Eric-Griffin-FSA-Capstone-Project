@@ -110,10 +110,10 @@ html {
 }
 
 .register-page {
-  display: flex;
+  display: inline-block;
   border-style: double;
   border: black, 20px;
-  align-items: center;
+
   padding: 50px;
   padding-top: 4rem;
   margin-top: 4rem;
@@ -123,8 +123,33 @@ html {
   display: flex;
   flex-direction: column;
   align-items: start;
+  place-items: center;
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 .register-form > label {
   padding: 10px;
+}
+
+.cart-container {
+  display: inline-block;
+  border-style: double;
+  border: black, 20px;
+  align-items: center;
+  padding: 50px;
+  padding-top: 4rem;
+  margin-top: 4rem;
+  background-color: aqua;
+}
+
+.userreg {
+  color: blue;
+  font-size: large;
+}
+
+.login-form {
+  display: inline-block;
+  text-decoration: underline;
+  font-weight: bold;
 }
