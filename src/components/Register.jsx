@@ -70,6 +70,26 @@ export default function Register() {
             onChange={(event) => setPassword(event.target.value)}
           />
         </label>
+
+        <label>
+          Email:
+          <input
+            minLength="1"
+            style={{ width: "300px" }}
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
+        </label>
+        <label>
+          Phone:
+          <input
+            minLength="1"
+            style={{ width: "300px" }}
+            value={phone}
+            onChange={(event) => setPhone(event.target.value)}
+          />
+        </label>
+        <h2>Name:</h2>
         <label>
           First Name:
           <input
@@ -88,16 +108,7 @@ export default function Register() {
             onChange={(event) => setLastname(event.target.value)}
           />
         </label>
-        <label>
-          Email:
-          <input
-            minLength="1"
-            style={{ width: "300px" }}
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-        </label>
-
+        <h2>Address:</h2>
         <label>
           City:
           <input
@@ -134,6 +145,7 @@ export default function Register() {
             onChange={(event) => setZipcode(event.target.value)}
           />
         </label>
+        <h3>Geolocation:</h3>
         <label>
           Lat:
           <input
@@ -153,15 +165,7 @@ export default function Register() {
             onChange={(event) => setLong(event.target.value)}
           />
         </label>
-        <label>
-          Phone:
-          <input
-            minLength="1"
-            style={{ width: "300px" }}
-            value={phone}
-            onChange={(event) => setPhone(event.target.value)}
-          />
-        </label>
+
         <button>Register</button>
       </form>
     </div>
