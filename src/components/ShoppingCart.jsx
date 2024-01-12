@@ -1,26 +1,45 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { getProductById, getUserCart } from "../api";
+import { useNavigate } from "react-router-dom";
 
-const dummyCart = [];
-
-export default function ShoppingCart() {
+export default function ShoppingCart({ user }) {
+  const [cart, setCart] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
-    async function fetchCart() {
+    async function loadUserCart() {
       try {
-        const response = await fetch("https://fakestoreapi.com/carts/5");
-        const result = await response.json();
-        console.log(result);
-      } catch (error) {
-        console.error(error);
+        const results = await getUserCart(user.id);
+        const cartItems = await Promise.all(
+          results[0].products.map((item) => getProductById(item.productId))
+        );
+        setCart(cartItems);
+        console.log(cartItems);
+      } catch (err) {
+        console.log(err);
       }
     }
-    fetchCart();
-  }, []);
+    loadUserCart();
+  }, [user]);
 
   return (
-    <div className="cart-container">
-      <h1>ShoppingCart!!</h1>
-      <h1>UNDER CONSTRUCTION</h1>
+    <div className="cart-list">
+      {cart.map((products, index) => {
+        return (
+          <div className="cart-container" key={index}>
+            <img
+              className="productImage2"
+              src={products.image}
+              alt={products.title}
+              width="100"
+            ></img>
+            <h3>{products.title}</h3>
+
+            <h2>${products.price}</h2>
+            <button>Delete from Cart</button>
+          </div>
+        );
+      })}
     </div>
   );
 }

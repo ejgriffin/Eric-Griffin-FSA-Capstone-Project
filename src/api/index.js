@@ -58,6 +58,17 @@ export const getUser = async (token) => {
   }
 };
 
+export const getAllUsers = async () => {
+  try {
+    const response = await fetch(`${APIURL}/users`);
+    const json = await response.json();
+
+    return json;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const registerUser = async (userObj) => {
   try {
     const rsp = await fetch(`${APIURL}/users`, {
@@ -69,6 +80,16 @@ export const registerUser = async (userObj) => {
     });
     const json = await rsp.json();
     console.log("registerUser", json);
+    return json;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const getUserCart = async (userId) => {
+  try {
+    const rsp = await fetch(`${APIURL}/carts/user/${userId}`);
+    const json = await rsp.json();
     return json;
   } catch (err) {
     console.error(err);

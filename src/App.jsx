@@ -21,6 +21,11 @@ function App() {
   }, []);
 
   // useEffect(() => {
+  //   const localUser = localStorage.getItem("username");
+  //   if (localToken !== undefined) setUser(localUser);
+  // }, []);
+
+  // useEffect(() => {
   //   if (token !== null && token !== undefined) {
   //     console.log(token);
   //     async function fetchUser(token) {
@@ -44,8 +49,11 @@ function App() {
         <Route path="/" element={<Products />} />
         <Route path="/register" element={<Register />} />
         <Route path="/success" element={<Success />} />
-        <Route path="/login" element={<Login setToken={setToken} />} />
-        <Route path="/cart" element={<ShoppingCart />} />
+        <Route
+          path="/login"
+          element={<Login setToken={setToken} setUser={setUser} />}
+        />
+        <Route path="/cart" element={<ShoppingCart user={user} />} />
         <Route path="*" element={<Products />} />
         <Route path="/products/:id" element={<SingleProduct />} />
       </Routes>

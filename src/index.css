@@ -133,16 +133,21 @@ html {
 }
 
 .cart-container {
-  display: inline-block;
+  display: inline-flex;
   border-style: double;
   border: black, 20px;
-  align-items: center;
-  padding: 50px;
+  justify-content: space-between;
+  padding: 10px;
   padding-top: 4rem;
-  margin-top: 4rem;
+
   background-color: aqua;
 }
-
+.cart-list {
+  display: grid;
+}
+.cart-container > button {
+  align-self: center;
+}
 .userreg {
   color: blue;
   font-size: large;

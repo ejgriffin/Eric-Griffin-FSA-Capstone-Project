@@ -21,6 +21,7 @@ export default function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     const userObj = {
       email,
       username,

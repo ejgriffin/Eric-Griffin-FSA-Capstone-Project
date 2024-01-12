@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { loginUser } from "../api";
+import { loginUser, getAllUsers } from "../api";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Login({ setToken }) {
+export default function Login({ setToken, setUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,8 +18,13 @@ export default function Login({ setToken }) {
 
     const nextToken = await loginUser(userObj);
 
-    console.log(nextToken);
+    const users = await getAllUsers();
+    const user = await users.filter((_user) => {
+      return _user.username === username; //will filter all users that you sent in
+    })[0];
+    setUser(user);
     setToken(nextToken);
+    localStorage.setItem("username", userObj.username);
     localStorage.setItem("token", nextToken);
     navigate("/");
   };
