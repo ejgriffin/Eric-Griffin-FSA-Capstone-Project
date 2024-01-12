@@ -138,11 +138,11 @@ html {
   border: black, 20px;
   justify-content: space-between;
   padding: 10px;
-  padding-top: 4rem;
 
   background-color: aqua;
 }
 .cart-list {
+  padding-top: 4rem;
   display: grid;
 }
 .cart-container > button {
