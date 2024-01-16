@@ -43,7 +43,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar token={token} user={user} setToken={setToken} setUser={setUser} />
+      <Navbar token={token} setToken={setToken} setUser={setUser} />
 
       <Routes>
         <Route path="/" element={<Products />} />

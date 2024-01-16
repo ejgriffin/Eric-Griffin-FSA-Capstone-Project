@@ -49,6 +49,7 @@ html {
 }
 
 .product-link {
+  width: 80%;
   border: 2px solid black;
   display: flex;
   flex-direction: column;
@@ -113,7 +114,6 @@ html {
   display: inline-block;
   border-style: double;
   border: black, 20px;
-
   padding: 50px;
   padding-top: 4rem;
   margin-top: 4rem;
@@ -133,17 +133,19 @@ html {
 }
 
 .cart-container {
-  display: inline-flex;
+  display: flex;
   border-style: double;
   border: black, 20px;
   justify-content: space-between;
   padding: 10px;
-
+  align-items: center;
   background-color: aqua;
 }
 .cart-list {
+  width: 100%;
+  margin: auto;
   padding-top: 4rem;
-  display: grid;
+  display: inline-block;
 }
 .cart-container > button {
   align-self: center;
@@ -157,4 +159,36 @@ html {
   display: inline-block;
   text-decoration: underline;
   font-weight: bold;
+}
+
+button {
+  cursor: pointer;
+}
+
+.product-link:hover {
+  box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.total {
+  display: flex;
+  justify-content: space-between;
+}
+.total span:nth-child(1) {
+  font-size: 2rem;
+  color: black;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+.total span:nth-child(2) {
+  font-size: 2rem;
+  color: black;
+  font-weight: bold;
+}
+span {
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: large;
 }

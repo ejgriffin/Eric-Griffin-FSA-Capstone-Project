@@ -2,6 +2,8 @@ import React from "react";
 import bananLogo from "./assets/bananazon.png";
 import cartLogo from "./assets/cart.png";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import Searchbar from "./Searchbar";
 
 export default function Navbar({ token, setToken, user, setUser }) {
   return (
@@ -10,7 +12,8 @@ export default function Navbar({ token, setToken, user, setUser }) {
         <Link to={"/"}>
           <img id="logo-image" src={bananLogo} />
         </Link>
-        <div className="search-container">
+        <Searchbar />
+        {/* <div className="search-container">
           <input
             type="search"
             style={{ width: "800px" }}
@@ -18,15 +21,14 @@ export default function Navbar({ token, setToken, user, setUser }) {
             placeholder="Search for Products"
           />
           <button>Search</button>
-        </div>
+        </div> */}
         {!token && <Link to="/login">Login</Link>}
         {token && (
           <Link
             to="/login"
             onClick={() => {
               setUser(null);
-              localStorage.removeItem("token");
-              localStorage.removeItem("username");
+              localStorage.clear();
               setToken(null);
             }}
           >
