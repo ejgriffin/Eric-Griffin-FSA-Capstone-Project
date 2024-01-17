@@ -2,8 +2,8 @@ import React from "react";
 import bananLogo from "./assets/bananazon.png";
 import cartLogo from "./assets/cart.png";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import Searchbar from "./Searchbar";
+import { useState } from "react";
 
 export default function Navbar({
   token,
@@ -13,13 +13,25 @@ export default function Navbar({
   setProducts,
   productData,
 }) {
+  const [search, setSearch] = useState("");
   return (
     <div>
       <div className="navbar">
-        <Link to={"/"} onClick={() => window.location.reload()}>
+        <Link
+          to={"/"}
+          onClick={() => {
+            setProducts(productData);
+            setSearch("");
+          }}
+        >
           <img id="logo-image" src={bananLogo} />
         </Link>
-        <Searchbar setProducts={setProducts} productData={productData} />
+        <Searchbar
+          setProducts={setProducts}
+          search={search}
+          setSearch={setSearch}
+          productData={productData}
+        />
 
         {!token && <Link to="/login">Login</Link>}
         {token && (

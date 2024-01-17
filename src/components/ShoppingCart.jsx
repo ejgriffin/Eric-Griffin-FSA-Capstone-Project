@@ -48,7 +48,7 @@ export default function ShoppingCart({ user }) {
         <span>Total Price of your Cart</span>
         <span>$ - </span>
       </div>
-      <button>Checkout</button>
+      <button>Proceed to Checkout</button>
     </div>
   );
 }

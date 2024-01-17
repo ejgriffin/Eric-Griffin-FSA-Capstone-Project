@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Searchbar({ setProducts, productData }) {
-  const [search, setSearch] = useState("");
+export default function Searchbar({
+  setProducts,
+  productData,
+  search,
+  setSearch,
+}) {
   const navigate = useNavigate();
 
   function handleSearch() {
