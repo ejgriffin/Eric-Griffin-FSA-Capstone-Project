@@ -22,6 +22,54 @@ export const getProductById = async (id) => {
   }
 };
 
+export const getAllElectronics = async () => {
+  try {
+    const response = await fetch(`${APIURL}/products/category/electronics`);
+    const json = await response.json();
+
+    return json;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getAllJewelry = async () => {
+  try {
+    const response = await fetch(`${APIURL}/products/category/jewelery`);
+    const json = await response.json();
+
+    return json;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getAllMens = async () => {
+  try {
+    const response = await fetch(
+      `${APIURL}/products/category/men%27s%20clothing`
+    );
+    const json = await response.json();
+
+    return json;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getAllWomens = async () => {
+  try {
+    const response = await fetch(
+      `${APIURL}/products/category/women%27s%20clothing`
+    );
+    const json = await response.json();
+
+    return json;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const loginUser = async (userObj) => {
   try {
     const rsp = await fetch(`${APIURL}/auth/login`, {

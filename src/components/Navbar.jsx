@@ -5,23 +5,22 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import Searchbar from "./Searchbar";
 
-export default function Navbar({ token, setToken, user, setUser }) {
+export default function Navbar({
+  token,
+  setToken,
+  user,
+  setUser,
+  setProducts,
+  productData,
+}) {
   return (
     <div>
       <div className="navbar">
-        <Link to={"/"}>
+        <Link to={"/"} onClick={() => window.location.reload()}>
           <img id="logo-image" src={bananLogo} />
         </Link>
-        <Searchbar />
-        {/* <div className="search-container">
-          <input
-            type="search"
-            style={{ width: "800px" }}
-            name="src"
-            placeholder="Search for Products"
-          />
-          <button>Search</button>
-        </div> */}
+        <Searchbar setProducts={setProducts} productData={productData} />
+
         {!token && <Link to="/login">Login</Link>}
         {token && (
           <Link
@@ -41,10 +40,10 @@ export default function Navbar({ token, setToken, user, setUser }) {
         </Link>
       </div>
       <div className="categories">
-        <Link to={"*"}>Electronics</Link>
-        <Link to={"*"}>Jewelry</Link>
-        <Link to={"*"}>Men's Clothing</Link>
-        <Link to={"*"}>Women's Clothing</Link>
+        <Link to={"/products/electronics"}>Electronics</Link>
+        <Link to={"/products/jewelry"}>Jewelry</Link>
+        <Link to={"/products/mensclothing"}>Men's Clothing</Link>
+        <Link to={"/products/womensclothing"}>Women's Clothing</Link>
       </div>
     </div>
   );

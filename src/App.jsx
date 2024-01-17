@@ -7,46 +7,50 @@ import Login from "./components/Login";
 import ShoppingCart from "./components/ShoppingCart";
 import SingleProduct from "./components/SingleProduct";
 import Products from "./components/Products";
-import { loginUser } from "./api";
-import { getUser } from "./api";
 import Success from "./components/Success";
+import Electronics from "./components/Electronics";
+import Jewelry from "./components/Jewelry";
+import MensClothing from "./components/MensClothing";
+import WomensClothing from "./components/WomensClothing";
+import { getAllProducts } from "./api";
 
 function App() {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
+
+  const [products, setProducts] = useState([]);
+  const [productData, setProductData] = useState([]);
+
+  useEffect(() => {
+    async function getProductData() {
+      try {
+        const products = await getAllProducts();
+        setProducts(products);
+        setProductData(products);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getProductData();
+  }, []);
 
   useEffect(() => {
     const localToken = localStorage.getItem("token");
     if (localToken !== undefined) setToken(localToken);
   }, []);
 
-  // useEffect(() => {
-  //   const localUser = localStorage.getItem("username");
-  //   if (localToken !== undefined) setUser(localUser);
-  // }, []);
-
-  // useEffect(() => {
-  //   if (token !== null && token !== undefined) {
-  //     console.log(token);
-  //     async function fetchUser(token) {
-  //       try {
-  //         const nextUser = await getUser(token);
-  //         setUser(nextUser);
-  //       } catch (err) {
-  //         console.log(err);
-  //       }
-  //     }
-
-  //     fetchUser(token);
-  //   }
-  // }, [token]);
-
   return (
     <BrowserRouter>
-      <Navbar token={token} setToken={setToken} setUser={setUser} />
+      <Navbar
+        token={token}
+        setProducts={setProducts}
+        productData={productData}
+        setToken={setToken}
+        setUser={setUser}
+      />
 
       <Routes>
-        <Route path="/" element={<Products />} />
+        <Route path="/" element={<Products products={products} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/success" element={<Success />} />
         <Route
@@ -56,6 +60,10 @@ function App() {
         <Route path="/cart" element={<ShoppingCart user={user} />} />
         <Route path="*" element={<Products />} />
         <Route path="/products/:id" element={<SingleProduct />} />
+        <Route path="/products/electronics" element={<Electronics />} />
+        <Route path="/products/jewelry" element={<Jewelry />} />
+        <Route path="/products/mensclothing" element={<MensClothing />} />
+        <Route path="/products/womensclothing" element={<WomensClothing />} />
       </Routes>
     </BrowserRouter>
   );
