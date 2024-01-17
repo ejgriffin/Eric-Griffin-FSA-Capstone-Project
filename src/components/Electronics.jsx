@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { getAllElectronics } from "../api";
 import ProductLink from "./ProductLink";
+// this is a component
 
 export default function Electronics() {
   const [electronics, setElectronics] = useState([]);
