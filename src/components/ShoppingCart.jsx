@@ -46,7 +46,7 @@ export default function ShoppingCart({ user }) {
       ))}
       <div className="total">
         <span>Total Price of your Cart</span>
-        <span>$ - price</span>
+        <span>$ - </span>
       </div>
       <button>Checkout</button>
     </div>
