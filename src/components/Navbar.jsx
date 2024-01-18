@@ -8,7 +8,6 @@ import { useState } from "react";
 export default function Navbar({
   token,
   setToken,
-  user,
   setUser,
   setProducts,
   productData,
@@ -38,7 +37,7 @@ export default function Navbar({
         {!token && <Link to="/login">Login</Link>}
         {token && (
           <div className="logout">
-            <h3>Hello, {localUser}</h3>
+            <h4>Hello, {localUser}</h4>
             <span></span>
             <Link
               to="/login"

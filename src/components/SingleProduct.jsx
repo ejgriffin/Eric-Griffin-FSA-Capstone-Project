@@ -22,17 +22,25 @@ export default function SingleProduct() {
 
   return (
     <div className="single-product">
-      <h1>{singleProduct.title}</h1>
-      <img
-        className="productImage2"
-        src={singleProduct.image}
-        alt={singleProduct.title}
-        width="400"
-      ></img>
-
-      <p>{singleProduct.description}</p>
-      <h2>${singleProduct.price}</h2>
-      <button>Add to Cart</button>
+      <div className="single-product-img">
+        <img
+          className="productImage2"
+          src={singleProduct.image}
+          alt={singleProduct.title}
+          width="400"
+        ></img>
+      </div>
+      <div className="single-product-text">
+        <h1>{singleProduct.title}</h1>
+        <hr></hr>
+        <h3>{singleProduct.category}</h3>
+        <hr></hr>
+        <p>{singleProduct.description}</p>
+        <hr></hr>
+        <h2>${singleProduct.price}</h2>
+        <hr></hr>
+        <button>Add to Cart</button>
+      </div>
     </div>
   );
 }

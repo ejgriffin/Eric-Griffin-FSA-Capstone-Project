@@ -29,6 +29,7 @@ html {
   background-color: aqua;
   padding-right: 30px;
   padding-left: 30px;
+  padding: 7px;
 }
 
 .products-list {
@@ -62,7 +63,7 @@ html {
   margin-top: 18px;
   width: 100%;
   border-style: double;
-  border: black, 20px;
+  border: black, 10px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-around;
@@ -71,7 +72,7 @@ html {
   padding: 5px;
 }
 .single-product {
-  display: inline-block;
+  display: flex;
   border-style: double;
   border: black, 20px;
   align-items: center;
@@ -79,6 +80,19 @@ html {
   padding-top: 4rem;
   margin-top: 4rem;
   background-color: aqua;
+}
+.single-product-text {
+  border: 1px solid black;
+  padding: 100px;
+  margin: 10px;
+}
+.single-product-text > p {
+  text-align: left;
+}
+hr {
+  border: none;
+  height: 1px;
+  background-color: black;
 }
 
 .productImage2 {
@@ -186,7 +200,6 @@ span {
   border-radius: 5px;
   margin-right: 10px;
   font-weight: bold;
-  font-size: large;
 }
 .logout {
   display: flex;
