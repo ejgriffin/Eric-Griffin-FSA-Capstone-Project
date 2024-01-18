@@ -9,16 +9,10 @@ html {
 
 #logo-image {
   width: 85px;
-  margin-right: 10px;
-  margin-top: 20px;
-  padding-left: 30px;
 }
 
 #cart-image {
   width: 25px;
-  margin-right: 10px;
-  margin-top: 20px;
-  padding-right: 20px;
 }
 
 .navbar {
@@ -33,6 +27,8 @@ html {
   justify-content: space-between;
   align-items: center;
   background-color: aqua;
+  padding-right: 30px;
+  padding-left: 30px;
 }
 
 .products-list {
@@ -195,4 +191,11 @@ span {
 .logout {
   display: flex;
   align-items: center;
+}
+
+.store-link:hover {
+  border: 2px solid white;
+}
+.cart-link:hover {
+  border: 2px solid white;
 }

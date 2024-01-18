@@ -19,6 +19,7 @@ export default function Navbar({
     <div>
       <div className="navbar">
         <Link
+          className="store-link"
           to={"/"}
           onClick={() => {
             setProducts(productData);
@@ -37,8 +38,8 @@ export default function Navbar({
         {!token && <Link to="/login">Login</Link>}
         {token && (
           <div className="logout">
-            <h3>{localUser}</h3>
-            <h3>-</h3>
+            <h3>Hello, {localUser}</h3>
+            <span></span>
             <Link
               to="/login"
               onClick={() => {
@@ -52,7 +53,7 @@ export default function Navbar({
           </div>
         )}
 
-        <Link to={"/cart"}>
+        <Link to={"/cart"} className="cart-link">
           <img id="cart-image" src={cartLogo} />
         </Link>
       </div>
