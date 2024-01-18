@@ -17,9 +17,10 @@ import { getAllProducts } from "./api";
 function App() {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
-
   const [products, setProducts] = useState([]);
   const [productData, setProductData] = useState([]);
+  const localToken = localStorage.getItem("token");
+  const localUser = localStorage.getItem("username");
 
   useEffect(() => {
     async function getProductData() {
@@ -34,11 +35,6 @@ function App() {
     getProductData();
   }, []);
 
-  useEffect(() => {
-    const localToken = localStorage.getItem("token");
-    if (localToken !== undefined) setToken(localToken);
-  }, []);
-
   return (
     <BrowserRouter>
       <Navbar
@@ -47,6 +43,7 @@ function App() {
         productData={productData}
         setToken={setToken}
         setUser={setUser}
+        localUser={localUser}
       />
 
       <Routes>

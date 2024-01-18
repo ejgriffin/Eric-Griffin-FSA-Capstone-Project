@@ -12,6 +12,7 @@ export default function Navbar({
   setUser,
   setProducts,
   productData,
+  localUser,
 }) {
   const [search, setSearch] = useState("");
   return (
@@ -35,16 +36,20 @@ export default function Navbar({
 
         {!token && <Link to="/login">Login</Link>}
         {token && (
-          <Link
-            to="/login"
-            onClick={() => {
-              setUser(null);
-              localStorage.clear();
-              setToken(null);
-            }}
-          >
-            Logout
-          </Link>
+          <div className="logout">
+            <h3>{localUser}</h3>
+            <h3>-</h3>
+            <Link
+              to="/login"
+              onClick={() => {
+                setUser(null);
+                localStorage.clear();
+                setToken(null);
+              }}
+            >
+              Logout
+            </Link>
+          </div>
         )}
 
         <Link to={"/cart"}>
