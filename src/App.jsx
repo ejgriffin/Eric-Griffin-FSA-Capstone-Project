@@ -28,6 +28,7 @@ function App() {
         const products = await getAllProducts();
         setProducts(products);
         setProductData(products);
+        console.log("products", products);
       } catch (err) {
         console.log(err);
       }

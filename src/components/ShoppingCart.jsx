@@ -8,12 +8,23 @@ export default function ShoppingCart({ user }) {
   useEffect(() => {
     async function loadUserCart() {
       try {
-        const results = await getUserCart(user.id);
-        const cartItems = await Promise.all(
-          results[0].products.map((item) => getProductById(item.productId))
-        );
-        setCart(cartItems);
-        console.log(cartItems);
+        const results = await getUserCart(user?.id);
+        const localCart = localStorage.getItem("cart");
+        if (!localCart) {
+          const cartItems = await Promise.all(
+            results[0].products.map((item) => getProductById(item.productId))
+          );
+          const products = results[0].products;
+          console.log(products[0]);
+          const cartWithQuantities = cartItems.map((item, index) => ({
+            ...item,
+            quantity: products[index].quantity,
+          }));
+          localStorage.setItem("cart", JSON.stringify(cartWithQuantities));
+          setCart(cartItems);
+        } else {
+          setCart(JSON.parse(localCart));
+        }
       } catch (err) {
         console.log(err);
       }
@@ -35,7 +46,7 @@ export default function ShoppingCart({ user }) {
 
           <div>
             <button> + </button>
-            <button>1</button>
+            <button>{products.quantity}</button>
             <button> - </button>
           </div>
           <div>

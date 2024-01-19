@@ -24,13 +24,14 @@ export default function Login({ setToken, setUser }) {
 
     const users = await getAllUsers();
     const user = await users.filter((_user) => {
-      return _user.username === username; //will filter all users that you sent in
+      return _user.username === username;
     })[0];
     setUser(user);
     setToken(nextToken);
 
     localStorage.setItem("username", userObj.username);
     localStorage.setItem("token", nextToken);
+    // navigate("/");
   };
 
   return (

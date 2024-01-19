@@ -20,6 +20,23 @@ export default function SingleProduct() {
     getProductData();
   }, []);
 
+  function addToCart() {
+    const cartInStorage = JSON.parse(localStorage.getItem("cart"));
+    // check if item is in cart
+    const result = cartInStorage.find((item) => item.id == id);
+    console.log(result);
+    if (!result) {
+      cartInStorage.push({ ...singleProduct, quantity: 1 });
+      localStorage.setItem("cart", JSON.stringify(cartInStorage));
+    } else {
+      result.quantity += 1;
+      const updatedCart = cartInStorage.filter((item) => item.id != id);
+      updatedCart.push(result);
+      console.log(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    }
+  }
+
   return (
     <div className="single-product">
       <div className="single-product-img">
@@ -39,7 +56,7 @@ export default function SingleProduct() {
         <hr></hr>
         <h2>${singleProduct.price}</h2>
         <hr></hr>
-        <button>Add to Cart</button>
+        <button onClick={addToCart}>Add to Cart</button>
       </div>
     </div>
   );
