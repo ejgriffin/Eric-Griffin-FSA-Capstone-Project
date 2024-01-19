@@ -212,3 +212,12 @@ span {
 .cart-link:hover {
   border: 2px solid white;
 }
+.checkout-page {
+  display: inline-block;
+  border-style: double;
+  border: black, 20px;
+  padding: 50px;
+  padding-top: 4rem;
+  margin-top: 4rem;
+  background-color: aqua;
+}

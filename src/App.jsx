@@ -12,6 +12,7 @@ import Electronics from "./components/Electronics";
 import Jewelry from "./components/Jewelry";
 import MensClothing from "./components/MensClothing";
 import WomensClothing from "./components/WomensClothing";
+import Checkout from "./components/Checkout";
 import { getAllProducts } from "./api";
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
         <Route path="/products/jewelry" element={<Jewelry />} />
         <Route path="/products/mensclothing" element={<MensClothing />} />
         <Route path="/products/womensclothing" element={<WomensClothing />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </BrowserRouter>
   );

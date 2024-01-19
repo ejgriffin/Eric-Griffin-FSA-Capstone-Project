@@ -1,9 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { getProductById, getUserCart } from "../api";
+import { useNavigate } from "react-router-dom";
 
 export default function ShoppingCart({ user }) {
   const [cart, setCart] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadUserCart() {
@@ -32,6 +34,10 @@ export default function ShoppingCart({ user }) {
     loadUserCart();
   }, [user]);
 
+  function handleCheckout() {
+    navigate("/checkout");
+  }
+
   return (
     <div className="cart-list">
       {cart.map((products, index) => (
@@ -59,7 +65,7 @@ export default function ShoppingCart({ user }) {
         <span>Total Price of your Cart</span>
         <span>$ - </span>
       </div>
-      <button>Proceed to Checkout</button>
+      <button onClick={handleCheckout}>Proceed to Checkout</button>
     </div>
   );
 }
