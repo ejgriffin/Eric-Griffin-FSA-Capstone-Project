@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../api";
 
-export default function SingleProduct() {
+export default function SingleProduct({ token }) {
   const [singleProduct, setSingleProduct] = useState([]);
   const { id } = useParams();
 
@@ -35,6 +35,7 @@ export default function SingleProduct() {
       console.log(updatedCart);
       localStorage.setItem("cart", JSON.stringify(updatedCart));
     }
+    alert("Item added to cart!");
   }
 
   return (
@@ -56,7 +57,12 @@ export default function SingleProduct() {
         <hr></hr>
         <h2>${singleProduct.price}</h2>
         <hr></hr>
-        <button onClick={addToCart}>Add to Cart</button>
+        {!token && (
+          <h3 className="login-msg">
+            You must be logged in to add items to cart!
+          </h3>
+        )}
+        {token && <button onClick={addToCart}>Add to Cart</button>}
       </div>
     </div>
   );

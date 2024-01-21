@@ -20,8 +20,12 @@ function App() {
   const [user, setUser] = useState(null);
   const [products, setProducts] = useState([]);
   const [productData, setProductData] = useState([]);
-  const localToken = localStorage.getItem("token");
   const localUser = localStorage.getItem("username");
+
+  useEffect(() => {
+    const localToken = localStorage.getItem("token");
+    if (localToken !== undefined) setToken(localToken);
+  }, []);
 
   useEffect(() => {
     async function getProductData() {
@@ -57,9 +61,12 @@ function App() {
           path="/login"
           element={<Login setToken={setToken} setUser={setUser} />}
         />
-        <Route path="/cart" element={<ShoppingCart user={user} />} />
+        <Route
+          path="/cart"
+          element={<ShoppingCart user={user} token={token} />}
+        />
         <Route path="*" element={<Products />} />
-        <Route path="/products/:id" element={<SingleProduct />} />
+        <Route path="/products/:id" element={<SingleProduct token={token} />} />
         <Route path="/products/electronics" element={<Electronics />} />
         <Route path="/products/jewelry" element={<Jewelry />} />
         <Route path="/products/mensclothing" element={<MensClothing />} />

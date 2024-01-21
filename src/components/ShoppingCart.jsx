@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { getProductById, getUserCart } from "../api";
 import { useNavigate } from "react-router-dom";
 
-export default function ShoppingCart({ user }) {
+export default function ShoppingCart({ user, token }) {
   const [cart, setCart] = useState([]);
   const navigate = useNavigate();
 
@@ -40,32 +40,41 @@ export default function ShoppingCart({ user }) {
 
   return (
     <div className="cart-list">
-      {cart.map((products, index) => (
-        <div className="cart-container" key={index}>
-          <img
-            className="productImage2"
-            src={products.image}
-            alt={products.title}
-            width="100"
-          ></img>
-          <p>{products.title}</p>
-
-          <div>
-            <button> + </button>
-            <button>{products.quantity}</button>
-            <button> - </button>
-          </div>
-          <div>
-            <span>${products.price}</span>
-            <button>Remove</button>
-          </div>
+      {!token && (
+        <div className="cart-login-msg">
+          <h1>Please Log in to view Shopping Cart!</h1>
         </div>
-      ))}
-      <div className="total">
-        <span>Total Price of your Cart</span>
-        <span>$ - </span>
-      </div>
-      <button onClick={handleCheckout}>Proceed to Checkout</button>
+      )}
+      {token && (
+        <div>
+          {cart.map((products, index) => (
+            <div className="cart-container" key={index}>
+              <img
+                className="productImage2"
+                src={products.image}
+                alt={products.title}
+                width="100"
+              ></img>
+              <p>{products.title}</p>
+
+              <div>
+                <button> + </button>
+                <button>{products.quantity}</button>
+                <button> - </button>
+              </div>
+              <div>
+                <span>${products.price}</span>
+                <button>Remove</button>
+              </div>
+            </div>
+          ))}
+          <div className="total">
+            <span>Total Price of your Cart</span>
+            <span>$ - </span>
+          </div>
+          <button onClick={handleCheckout}>Proceed to Checkout</button>
+        </div>
+      )}
     </div>
   );
 }
