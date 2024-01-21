@@ -14,10 +14,11 @@ import MensClothing from "./components/MensClothing";
 import WomensClothing from "./components/WomensClothing";
 import Checkout from "./components/Checkout";
 import { getAllProducts } from "./api";
+import Footer from "./components/Footer";
 
 function App() {
   const [token, setToken] = useState(null);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState([]);
   const [products, setProducts] = useState([]);
   const [productData, setProductData] = useState([]);
   const localUser = localStorage.getItem("username");
@@ -51,7 +52,7 @@ function App() {
         setUser={setUser}
         localUser={localUser}
       />
-
+      <Footer />
       <Routes>
         <Route path="/" element={<Products products={products} />} />
         <Route path="/products" element={<Products products={products} />} />
@@ -66,7 +67,10 @@ function App() {
           element={<ShoppingCart user={user} token={token} />}
         />
         <Route path="*" element={<Products />} />
-        <Route path="/products/:id" element={<SingleProduct token={token} />} />
+        <Route
+          path="/products/:id"
+          element={<SingleProduct user={user} token={token} />}
+        />
         <Route path="/products/electronics" element={<Electronics />} />
         <Route path="/products/jewelry" element={<Jewelry />} />
         <Route path="/products/mensclothing" element={<MensClothing />} />

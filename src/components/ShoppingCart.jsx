@@ -38,6 +38,74 @@ export default function ShoppingCart({ user, token }) {
     navigate("/checkout");
   }
 
+  function formatPrice(price) {
+    const roundedPrice = price.toFixed(2);
+    return roundedPrice;
+  }
+
+  function totalProductPrice(product) {
+    //product quantity * product price
+    const total = product.quantity * product.price;
+    return formatPrice(total);
+  }
+  function totalCartPrice() {
+    console.log("cart", cart);
+    return 100;
+  }
+
+  function removeItemFromCart(product) {
+    const cartInStorage = JSON.parse(localStorage.getItem("cart"));
+    const newCart = cartInStorage.filter((item) => {
+      return item.id !== product.id;
+    });
+    localStorage.setItem("cart", JSON.stringify(newCart));
+    setCart(newCart);
+  }
+
+  function increaseProductCount(product) {
+    console.log("product", product);
+    const id = product.id;
+    const cartInStorage = JSON.parse(localStorage.getItem("cart"));
+    // check if item is in cart
+    const result = cartInStorage.find((item) => item.id == id);
+    console.log("result", result);
+    if (!result) {
+      cartInStorage.push({ ...product, quantity: 1 });
+      localStorage.setItem("cart", JSON.stringify(cartInStorage));
+    } else {
+      result.quantity += 1;
+      const updatedCart = cartInStorage.filter((item) => item.id != id);
+      updatedCart.push(result);
+      console.log(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      setCart(updatedCart);
+    }
+  }
+
+  function decreaseProductCount(product) {
+    console.log("product", product);
+    const id = product.id;
+    const cartInStorage = JSON.parse(localStorage.getItem("cart"));
+    // check if item is in cart
+    const result = cartInStorage.find((item) => item.id == id);
+    console.log("result", result);
+    if (!result) {
+      cartInStorage.push({ ...product, quantity: 1 });
+      localStorage.setItem("cart", JSON.stringify(cartInStorage));
+    } else {
+      result.quantity -= 1;
+      if (result.quantity == 0) {
+        removeItemFromCart(result);
+      } else {
+        const updatedCart = cartInStorage.filter((item) => item.id != id);
+        updatedCart.push(result);
+        console.log(updatedCart);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        setCart(updatedCart);
+      }
+    }
+  }
+
   return (
     <div className="cart-list">
       {!token && (
@@ -47,30 +115,41 @@ export default function ShoppingCart({ user, token }) {
       )}
       {token && (
         <div>
-          {cart.map((products, index) => (
+          {cart.map((product, index) => (
             <div className="cart-container" key={index}>
               <img
                 className="productImage2"
-                src={products.image}
-                alt={products.title}
+                src={product.image}
+                alt={product.title}
                 width="100"
               ></img>
-              <p>{products.title}</p>
+              <p>{product.title}</p>
 
               <div>
-                <button> + </button>
-                <button>{products.quantity}</button>
-                <button> - </button>
+                <button onClick={() => increaseProductCount(product)}>
+                  {" "}
+                  +{" "}
+                </button>
+                <button>{product.quantity}</button>
+                <button onClick={() => decreaseProductCount(product)}>
+                  {" "}
+                  -{" "}
+                </button>
               </div>
+              {/* <div>
+                <span>${totalProductPrice(product)}</span>
+              </div> */}
               <div>
-                <span>${products.price}</span>
-                <button>Remove</button>
+                <span>${totalProductPrice(product)}</span>
+                <button onClick={() => removeItemFromCart(product)}>
+                  Remove
+                </button>
               </div>
             </div>
           ))}
           <div className="total">
             <span>Total Price of your Cart</span>
-            <span>$ - </span>
+            <span>$ {totalCartPrice()}</span>
           </div>
           <button onClick={handleCheckout}>Proceed to Checkout</button>
         </div>

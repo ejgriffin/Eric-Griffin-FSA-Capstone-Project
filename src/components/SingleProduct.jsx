@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../api";
 
-export default function SingleProduct({ token }) {
+export default function SingleProduct({ user, token }) {
   const [singleProduct, setSingleProduct] = useState([]);
   const { id } = useParams();
 
@@ -21,6 +21,12 @@ export default function SingleProduct({ token }) {
   }, []);
 
   function addToCart() {
+    console.log("user", user);
+    let cart = localStorage.getItem("cart");
+    if (!cart) {
+      cart = [];
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
     const cartInStorage = JSON.parse(localStorage.getItem("cart"));
     // check if item is in cart
     const result = cartInStorage.find((item) => item.id == id);
