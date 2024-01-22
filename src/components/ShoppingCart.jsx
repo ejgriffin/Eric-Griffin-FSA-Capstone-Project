@@ -49,8 +49,13 @@ export default function ShoppingCart({ user, token }) {
     return formatPrice(total);
   }
   function totalCartPrice() {
-    console.log("cart", cart);
-    return 100;
+    const cartInStorage = JSON.parse(localStorage.getItem("cart"));
+    let totalPrice = 0;
+    for (let i = 0; i < cartInStorage.length; i++) {
+      totalPrice += cartInStorage[i].price * cartInStorage[i].quantity;
+    }
+
+    return formatPrice(totalPrice);
   }
 
   function removeItemFromCart(product) {
