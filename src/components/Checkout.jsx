@@ -133,7 +133,7 @@ export default function Checkout() {
           />
         </label>
 
-        <button>Submit Payment</button>
+        <button className="big-button">Submit Payment</button>
       </form>
     </div>
   );

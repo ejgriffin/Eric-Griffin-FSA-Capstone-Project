@@ -20,8 +20,12 @@ export default function SingleProduct({ user, token }) {
     getProductData();
   }, []);
 
+  function formatPrice(price) {
+    const roundedPrice = price.toFixed(2);
+    return roundedPrice;
+  }
+
   function addToCart() {
-    console.log("user", user);
     let cart = localStorage.getItem("cart");
     if (!cart) {
       cart = [];

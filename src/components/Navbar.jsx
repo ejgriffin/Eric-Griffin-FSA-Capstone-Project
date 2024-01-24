@@ -39,7 +39,7 @@ export default function Navbar({
           <div className="logout">
             <h4>Hello, {localUser}</h4>
             <span></span>
-            <Link
+            <button
               to="/login"
               onClick={() => {
                 setUser(null);
@@ -48,7 +48,7 @@ export default function Navbar({
               }}
             >
               Logout
-            </Link>
+            </button>
           </div>
         )}
 

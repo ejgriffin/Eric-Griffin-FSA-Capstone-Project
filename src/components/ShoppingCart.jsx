@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function ShoppingCart({ user, token }) {
   const [cart, setCart] = useState([]);
   const navigate = useNavigate();
+  const [totalProdPrice, setTotalProdPrice] = useState(0);
 
   useEffect(() => {
     async function loadUserCart() {
@@ -43,8 +44,22 @@ export default function ShoppingCart({ user, token }) {
     return roundedPrice;
   }
 
+  // useEffect((product) => {
+  //   async function totalProductPrice(product) {
+  //     try {
+  //       await loadUserCart(product);
+
+  //       const total = cart.product.quantity * cart.product.price;
+  //       const roundPrice = formatPrice(total);
+  //       setTotalProdPrice(roundPrice);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   }
+  //   totalProductPrice(product);
+  // });
+
   function totalProductPrice(product) {
-    //product quantity * product price
     const total = product.quantity * product.price;
     return formatPrice(total);
   }
@@ -111,6 +126,14 @@ export default function ShoppingCart({ user, token }) {
     }
   }
 
+  // function cartStatus() {
+  //   const cartInStorage = JSON.parse(localStorage.getItem("cart"));
+  //   if (cartInStorage.length === 0) {
+  //     console.log("Your Shopping Cart is EMPTY!");
+  //   }
+  // }
+  // cartStatus();
+
   return (
     <div className="cart-list">
       {!token && (
@@ -120,6 +143,14 @@ export default function ShoppingCart({ user, token }) {
       )}
       {token && (
         <div>
+          <div className="banana">
+            {" "}
+            <span className="secret">Item Image</span>
+            <span>Item Name</span>
+            <span>Quantity</span>
+            <span>Price</span>
+            <span>Total</span>
+          </div>
           {cart.map((product, index) => (
             <div className="cart-container" key={index}>
               <img
@@ -128,7 +159,7 @@ export default function ShoppingCart({ user, token }) {
                 alt={product.title}
                 width="100"
               ></img>
-              <p>{product.title}</p>
+              <h3>{product.title}</h3>
 
               <div>
                 <button onClick={() => increaseProductCount(product)}>
@@ -141,11 +172,11 @@ export default function ShoppingCart({ user, token }) {
                   -{" "}
                 </button>
               </div>
-              {/* <div>
-                <span>${totalProductPrice(product)}</span>
-              </div> */}
               <div>
-                <span>${totalProductPrice(product)}</span>
+                <span>${formatPrice(product.price)}</span>
+              </div>
+              <div>
+                {/* <span>${totalProductPrice(product)}</span> */}
                 <button onClick={() => removeItemFromCart(product)}>
                   Remove
                 </button>
@@ -153,10 +184,12 @@ export default function ShoppingCart({ user, token }) {
             </div>
           ))}
           <div className="total">
-            <span>Total Price of your Cart</span>
-            <span>$ {totalCartPrice()}</span>
+            <span>Total Price of your Cart:</span>
+            {/* <span>$ {totalCartPrice()}</span> */}
           </div>
-          <button onClick={handleCheckout}>Proceed to Checkout</button>
+          <button className="big-button" onClick={handleCheckout}>
+            Proceed to Checkout
+          </button>
         </div>
       )}
     </div>

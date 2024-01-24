@@ -43,6 +43,7 @@ html {
   width: 70em;
   padding-left: 4rem;
   padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .product-link {
@@ -154,8 +155,9 @@ hr {
 .cart-list {
   width: 100%;
   margin: auto;
-  padding-top: 4rem;
+  padding-top: 5%;
   display: inline-block;
+  padding-bottom: 5%;
 }
 .cart-container > button {
   align-self: center;
@@ -251,5 +253,42 @@ span {
   background-color: aqua;
   padding-right: 40px;
   padding-left: 40px;
-  padding: 7px;
+  margin: auto;
+}
+.total {
+  display: flex;
+  border-style: double;
+  border: black, 20px;
+  justify-content: space-between;
+  padding: 5px;
+  align-items: center;
+  background-color: aqua;
+  margin: auto;
+}
+.big-button {
+  padding: 5px;
+  width: 300px;
+  border: 1px solid black;
+  margin: 5px 0;
+  background-color: rgb(222, 222, 111);
+  color: blue;
+  font-size: large;
+}
+button {
+  border: 1px solid black;
+  background-color: rgb(222, 222, 111);
+  color: blue;
+}
+.banana {
+  display: flex;
+  border-style: double;
+  border: black, 20px;
+  justify-content: space-between;
+  padding: 5px;
+  padding-left: 5%;
+  align-items: flex-end;
+  background-color: aqua;
+}
+.secret {
+  color: aqua;
 }
