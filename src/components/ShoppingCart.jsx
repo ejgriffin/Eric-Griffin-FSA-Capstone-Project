@@ -24,7 +24,7 @@ export default function ShoppingCart({ user, token }) {
             quantity: products[index].quantity,
           }));
           localStorage.setItem("cart", JSON.stringify(cartWithQuantities));
-          setCart(cartItems);
+          setCart(cartWithQuantities);
         } else {
           setCart(JSON.parse(localCart));
         }
@@ -44,33 +44,20 @@ export default function ShoppingCart({ user, token }) {
     return roundedPrice;
   }
 
-  // useEffect((product) => {
-  //   async function totalProductPrice(product) {
-  //     try {
-  //       await loadUserCart(product);
-
-  //       const total = cart.product.quantity * cart.product.price;
-  //       const roundPrice = formatPrice(total);
-  //       setTotalProdPrice(roundPrice);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   }
-  //   totalProductPrice(product);
-  // });
-
   function totalProductPrice(product) {
     const total = product.quantity * product.price;
     return formatPrice(total);
   }
   function totalCartPrice() {
     const cartInStorage = JSON.parse(localStorage.getItem("cart"));
-    let totalPrice = 0;
-    for (let i = 0; i < cartInStorage.length; i++) {
-      totalPrice += cartInStorage[i].price * cartInStorage[i].quantity;
-    }
+    if (cartInStorage) {
+      let totalPrice = 0;
+      for (let i = 0; i < cartInStorage.length; i++) {
+        totalPrice += cartInStorage[i].price * cartInStorage[i].quantity;
+      }
 
-    return formatPrice(totalPrice);
+      return formatPrice(totalPrice);
+    }
   }
 
   function removeItemFromCart(product) {
@@ -93,10 +80,13 @@ export default function ShoppingCart({ user, token }) {
       cartInStorage.push({ ...product, quantity: 1 });
       localStorage.setItem("cart", JSON.stringify(cartInStorage));
     } else {
-      result.quantity += 1;
-      const updatedCart = cartInStorage.filter((item) => item.id != id);
-      updatedCart.push(result);
-      console.log(updatedCart);
+      const updatedCart = cartInStorage.map((item) => {
+        if (item.id === product.id) {
+          item.quantity += 1;
+        }
+        return item;
+      });
+
       localStorage.setItem("cart", JSON.stringify(updatedCart));
       setCart(updatedCart);
     }
@@ -113,16 +103,17 @@ export default function ShoppingCart({ user, token }) {
       cartInStorage.push({ ...product, quantity: 1 });
       localStorage.setItem("cart", JSON.stringify(cartInStorage));
     } else {
-      result.quantity -= 1;
-      if (result.quantity == 0) {
-        removeItemFromCart(result);
-      } else {
-        const updatedCart = cartInStorage.filter((item) => item.id != id);
-        updatedCart.push(result);
-        console.log(updatedCart);
-        localStorage.setItem("cart", JSON.stringify(updatedCart));
-        setCart(updatedCart);
-      }
+      let updatedCart = cartInStorage.map((item) => {
+        if (item.id === product.id) {
+          item.quantity -= 1;
+        }
+        return item;
+      });
+      updatedCart = updatedCart.filter((item) => item.quantity > 0);
+
+      console.log(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      setCart(updatedCart);
     }
   }
 
@@ -151,41 +142,45 @@ export default function ShoppingCart({ user, token }) {
             <span>Price</span>
             <span>Total</span>
           </div>
-          {cart.map((product, index) => (
-            <div className="cart-container" key={index}>
-              <img
-                className="productImage2"
-                src={product.image}
-                alt={product.title}
-                width="100"
-              ></img>
-              <h3>{product.title}</h3>
+          {cart.map((product, index) => {
+            console.log("product", product);
+            console.log("quantity", product.quantity);
+            return (
+              <div className="cart-container" key={index}>
+                <img
+                  className="productImage2"
+                  src={product.image}
+                  alt={product.title}
+                  width="100"
+                ></img>
+                <h3>{product.title}</h3>
 
-              <div>
-                <button onClick={() => increaseProductCount(product)}>
-                  {" "}
-                  +{" "}
-                </button>
-                <button>{product.quantity}</button>
-                <button onClick={() => decreaseProductCount(product)}>
-                  {" "}
-                  -{" "}
-                </button>
+                <div>
+                  <button onClick={() => increaseProductCount(product)}>
+                    {" "}
+                    +{" "}
+                  </button>
+                  <button>{product.quantity}</button>
+                  <button onClick={() => decreaseProductCount(product)}>
+                    {" "}
+                    -{" "}
+                  </button>
+                </div>
+                <div>
+                  <span>${formatPrice(product.price)}</span>
+                </div>
+                <div>
+                  <span>${totalProductPrice(product)}</span>
+                  <button onClick={() => removeItemFromCart(product)}>
+                    Remove
+                  </button>
+                </div>
               </div>
-              <div>
-                <span>${formatPrice(product.price)}</span>
-              </div>
-              <div>
-                {/* <span>${totalProductPrice(product)}</span> */}
-                <button onClick={() => removeItemFromCart(product)}>
-                  Remove
-                </button>
-              </div>
-            </div>
-          ))}
+            );
+          })}
           <div className="total">
             <span>Total Price of your Cart:</span>
-            {/* <span>$ {totalCartPrice()}</span> */}
+            <span>$ {totalCartPrice()}</span>
           </div>
           <button className="big-button" onClick={handleCheckout}>
             Proceed to Checkout

@@ -286,6 +286,7 @@ button {
   justify-content: space-between;
   padding: 5px;
   padding-left: 5%;
+  padding-right: 4%;
   align-items: flex-end;
   background-color: aqua;
 }
