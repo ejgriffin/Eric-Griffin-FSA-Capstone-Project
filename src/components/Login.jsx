@@ -42,6 +42,7 @@ export default function Login({ setToken, setUser }) {
           Username:{" "}
           <input
             value={username}
+            style={{ width: "300px" }}
             onChange={(event) => setUsername(event.target.value)}
           />
         </label>
@@ -51,10 +52,11 @@ export default function Login({ setToken, setUser }) {
           <input
             type="password"
             value={password}
+            style={{ width: "300px" }}
             onChange={(event) => setPassword(event.target.value)}
           />
         </label>
-        <button>Login</button>
+        <button className="login-button">Login</button>
       </form>
       <div className="register-link">
         <Link to={"/register"}>Register a New Account</Link>

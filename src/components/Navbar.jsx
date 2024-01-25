@@ -58,12 +58,12 @@ export default function Navbar({
           <img id="cart-image" src={cartLogo} />
           {localCart && <span className="cart-num">{localCart.length} </span>}
         </Link>
-      </div>
-      <div className="categories">
-        <Link to={"/products/electronics"}>Electronics</Link>
-        <Link to={"/products/jewelry"}>Jewelry</Link>
-        <Link to={"/products/mensclothing"}>Men's Clothing</Link>
-        <Link to={"/products/womensclothing"}>Women's Clothing</Link>
+        <div className="categories">
+          <Link to={"/products/electronics"}>Electronics</Link>
+          <Link to={"/products/jewelry"}>Jewelry</Link>
+          <Link to={"/products/mensclothing"}>Men's Clothing</Link>
+          <Link to={"/products/womensclothing"}>Women's Clothing</Link>
+        </div>
       </div>
     </div>
   );

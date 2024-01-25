@@ -24,7 +24,7 @@ html {
   border: black, 20px;
   box-sizing: border-box;
   display: inline-flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   background-color: aqua;
   padding-right: 50px;
@@ -114,6 +114,28 @@ hr {
   margin-top: 4rem;
   background-color: aqua;
 }
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  place-items: center;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.login-form > label {
+  padding: 10px;
+  font-size: large;
+}
+.login-button {
+  padding: 5px;
+  width: 200px;
+  border: 1px solid black;
+  margin: 5px 0;
+  background-color: rgb(222, 222, 111);
+  color: blue;
+  font-size: large;
+}
 
 .register-link {
   align-content: center;
@@ -165,12 +187,6 @@ hr {
 .userreg {
   color: blue;
   font-size: large;
-}
-
-.login-form {
-  display: inline-block;
-  text-decoration: underline;
-  font-weight: bold;
 }
 
 button {
