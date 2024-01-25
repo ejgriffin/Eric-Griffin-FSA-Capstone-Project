@@ -21,6 +21,7 @@ function App() {
   const [user, setUser] = useState([]);
   const [products, setProducts] = useState([]);
   const [productData, setProductData] = useState([]);
+  const localCart = JSON.parse(localStorage.getItem("cart"));
   const localUser = localStorage.getItem("username");
 
   useEffect(() => {
@@ -51,6 +52,7 @@ function App() {
         setToken={setToken}
         setUser={setUser}
         localUser={localUser}
+        localCart={localCart}
       />
       <Footer />
       <Routes>

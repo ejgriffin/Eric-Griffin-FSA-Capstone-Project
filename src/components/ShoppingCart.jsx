@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function ShoppingCart({ user, token }) {
   const [cart, setCart] = useState([]);
+
   const navigate = useNavigate();
-  const [totalProdPrice, setTotalProdPrice] = useState(0);
 
   useEffect(() => {
     async function loadUserCart() {
@@ -75,7 +75,7 @@ export default function ShoppingCart({ user, token }) {
     const cartInStorage = JSON.parse(localStorage.getItem("cart"));
     // check if item is in cart
     const result = cartInStorage.find((item) => item.id == id);
-    console.log("result", result);
+
     if (!result) {
       cartInStorage.push({ ...product, quantity: 1 });
       localStorage.setItem("cart", JSON.stringify(cartInStorage));
@@ -98,7 +98,7 @@ export default function ShoppingCart({ user, token }) {
     const cartInStorage = JSON.parse(localStorage.getItem("cart"));
     // check if item is in cart
     const result = cartInStorage.find((item) => item.id == id);
-    console.log("result", result);
+
     if (!result) {
       cartInStorage.push({ ...product, quantity: 1 });
       localStorage.setItem("cart", JSON.stringify(cartInStorage));
@@ -117,14 +117,6 @@ export default function ShoppingCart({ user, token }) {
     }
   }
 
-  // function cartStatus() {
-  //   const cartInStorage = JSON.parse(localStorage.getItem("cart"));
-  //   if (cartInStorage.length === 0) {
-  //     console.log("Your Shopping Cart is EMPTY!");
-  //   }
-  // }
-  // cartStatus();
-
   return (
     <div className="cart-list">
       {!token && (
@@ -135,16 +127,23 @@ export default function ShoppingCart({ user, token }) {
       {token && (
         <div>
           <div className="banana">
-            {" "}
+            {/* {" "}
             <span className="secret">Item Image</span>
             <span>Item Name</span>
             <span>Quantity</span>
             <span>Price</span>
-            <span>Total</span>
+            <span>Total</span> */}
+            <table>
+              <tr>
+                <td className="secret">SECRET</td>
+                <td>Item Name</td>
+                <td>Quantity</td>
+                <td>Price</td>
+                <td>Total</td>
+              </tr>
+            </table>
           </div>
           {cart.map((product, index) => {
-            console.log("product", product);
-            console.log("quantity", product.quantity);
             return (
               <div className="cart-container" key={index}>
                 <img
@@ -182,9 +181,12 @@ export default function ShoppingCart({ user, token }) {
             <span>Total Price of your Cart:</span>
             <span>$ {totalCartPrice()}</span>
           </div>
-          <button className="big-button" onClick={handleCheckout}>
-            Proceed to Checkout
-          </button>
+
+          {totalCartPrice() != 0 && (
+            <button className="big-button" onClick={handleCheckout}>
+              Proceed to Checkout
+            </button>
+          )}
         </div>
       )}
     </div>

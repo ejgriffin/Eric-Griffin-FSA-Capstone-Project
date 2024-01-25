@@ -24,11 +24,11 @@ html {
   border: black, 20px;
   box-sizing: border-box;
   display: inline-flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   background-color: aqua;
-  padding-right: 40px;
-  padding-left: 40px;
+  padding-right: 50px;
+  padding-left: 50px;
   padding: 7px;
 }
 
@@ -280,14 +280,14 @@ button {
   color: blue;
 }
 .banana {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 100%);
+  grid-column-gap: 80px;
   border-style: double;
   border: black, 20px;
   justify-content: space-between;
   padding: 5px;
-  padding-left: 5%;
-  padding-right: 4%;
-  align-items: flex-end;
+  padding-right: 5%;
   background-color: aqua;
 }
 .secret {

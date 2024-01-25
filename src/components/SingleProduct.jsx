@@ -21,8 +21,10 @@ export default function SingleProduct({ user, token }) {
   }, []);
 
   function formatPrice(price) {
-    const roundedPrice = price.toFixed(2);
-    return roundedPrice;
+    if (singleProduct) {
+      const roundedPrice = price.toFixed(2);
+      return roundedPrice;
+    }
   }
 
   function addToCart() {
@@ -72,7 +74,11 @@ export default function SingleProduct({ user, token }) {
             You must be logged in to add items to cart!
           </h3>
         )}
-        {token && <button onClick={addToCart}>Add to Cart</button>}
+        {token && (
+          <button className="big-button" onClick={addToCart}>
+            Add to Cart
+          </button>
+        )}
       </div>
     </div>
   );
