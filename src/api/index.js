@@ -143,3 +143,19 @@ export const getUserCart = async (userId) => {
     console.error(err);
   }
 };
+
+export const getPrices = async () => {
+  try {
+    const rsp = await fetch(`${APIURL}/products`, {});
+    if (!rsp.ok) {
+      throw new Error(`HTTP error! Status: ${rsp.status}`);
+    }
+    const json = await rsp.json();
+    const prices = json.price;
+    json.sort((a, b) => a.price - b.price);
+    return json;
+  } catch (err) {
+    console.error("Error fetching data:", err);
+    return [];
+  }
+};
