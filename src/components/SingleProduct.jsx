@@ -3,7 +3,13 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../api";
 
-export default function SingleProduct({ user, token, setCart }) {
+export default function SingleProduct({
+  user,
+  token,
+  setCart,
+  setCartNum,
+  cartQuantity,
+}) {
   const [singleProduct, setSingleProduct] = useState(null);
   const { id } = useParams();
 
@@ -47,13 +53,32 @@ export default function SingleProduct({ user, token, setCart }) {
       result.quantity += 1;
       const updatedCart = cartInStorage.filter((item) => item.id != id);
       updatedCart.push(result);
-      console.log(updatedCart);
       localStorage.setItem("cart", JSON.stringify(updatedCart));
       setCart(updatedCart);
     }
+    const updatedQuantity = cartQuantity();
+    setCartNum(updatedQuantity);
 
     alert("Item added to cart!");
   }
+
+  useEffect(() => {
+    function cartQuantity() {
+      const cartInStorage = JSON.parse(localStorage.getItem("cart"));
+      if (cartInStorage) {
+        let quantity = 0;
+        for (let i = 0; i < cartInStorage.length; i++) {
+          quantity += cartInStorage[i].quantity;
+        }
+        return quantity; // Return the calculated quantity
+      }
+      return 0; // Return 0 if there is no cart in storage
+    }
+
+    const newQuan = cartQuantity();
+    setCartNum(newQuan);
+    console.log("cartNum", newQuan); // Use newQuan instead of cartNum
+  }, []); // Add dependencies if needed
 
   return (
     <div className="single-product">

@@ -3,7 +3,14 @@ import { useState, useEffect } from "react";
 import { getProductById, getUserCart } from "../api";
 import { useNavigate } from "react-router-dom";
 
-export default function ShoppingCart({ user, token, cart, setCart }) {
+export default function ShoppingCart({
+  user,
+  token,
+  cart,
+  setCart,
+  cartQuantity,
+  setCartNum,
+}) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,13 +32,15 @@ export default function ShoppingCart({ user, token, cart, setCart }) {
           setCart(cartWithQuantities);
         } else {
           setCart(JSON.parse(localCart));
+          const updatedQuantity = cartQuantity();
+          setCartNum(updatedQuantity);
         }
       } catch (err) {
         console.log(err);
       }
     }
     loadUserCart();
-  }, [user]);
+  }, [user, cartQuantity]);
 
   function handleCheckout() {
     navigate("/checkout");
@@ -65,6 +74,8 @@ export default function ShoppingCart({ user, token, cart, setCart }) {
     });
     localStorage.setItem("cart", JSON.stringify(newCart));
     setCart(newCart);
+    const updatedQuantity = cartQuantity();
+    setCartNum(updatedQuantity);
   }
 
   function increaseProductCount(product) {
@@ -88,6 +99,8 @@ export default function ShoppingCart({ user, token, cart, setCart }) {
       localStorage.setItem("cart", JSON.stringify(updatedCart));
       setCart(updatedCart);
     }
+    const updatedQuantity = cartQuantity();
+    setCartNum(updatedQuantity);
   }
 
   function decreaseProductCount(product) {
@@ -113,6 +126,8 @@ export default function ShoppingCart({ user, token, cart, setCart }) {
       localStorage.setItem("cart", JSON.stringify(updatedCart));
       setCart(updatedCart);
     }
+    const updatedQuantity = cartQuantity();
+    setCartNum(updatedQuantity);
   }
 
   return (
