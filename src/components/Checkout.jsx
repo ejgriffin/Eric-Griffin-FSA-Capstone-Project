@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Checkout() {
   const [firstname, setFirstname] = useState("");
@@ -12,12 +13,38 @@ export default function Checkout() {
   const [street, setStreet] = useState("");
   const [number, setNumber] = useState("");
   const [zipcode, setZipcode] = useState("");
-  const [lat, setLat] = useState("");
-  const [long, setLong] = useState("");
   const [phone, setPhone] = useState("");
+  const [country, setCountry] = useState("");
+  const [state, setState] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const checkoutInfo = {
+      name: {
+        firstname,
+        lastname,
+      },
+      billinginfo: {
+        cardNumber,
+        expDate,
+        cvv,
+      },
+      contactinfo: {
+        email,
+        phone,
+      },
+      shippingaddress: {
+        street,
+        number,
+        city,
+        state,
+        country,
+        zipcode,
+      },
+    };
+    console.log("checkout", checkoutInfo);
+    navigate("/confirmation");
   };
 
   return (
@@ -37,7 +64,7 @@ export default function Checkout() {
         <label>
           Last Name:
           <input
-            minLength="1"
+            minLength="0"
             style={{ width: "300px" }}
             value={lastname}
             onChange={(event) => setLastname(event.target.value)}
@@ -48,7 +75,8 @@ export default function Checkout() {
         <label>
           Credit Card Number:
           <input
-            minLength="1"
+            minLength="16"
+            maxLength="16"
             style={{ width: "300px" }}
             value={cardNumber}
             onChange={(event) => setCardNumber(event.target.value)}
@@ -57,7 +85,8 @@ export default function Checkout() {
         <label>
           Expiration Date:
           <input
-            minLength="1"
+            minLength="5"
+            maxLength="5"
             style={{ width: "300px" }}
             type="text"
             value={expDate}
@@ -68,7 +97,8 @@ export default function Checkout() {
         <label>
           CVV:
           <input
-            minLength="1"
+            minLength="3"
+            maxLength="3"
             style={{ width: "300px" }}
             value={cvv}
             onChange={(event) => setCvv(event.target.value)}
@@ -97,15 +127,6 @@ export default function Checkout() {
         <hr></hr>
         <h2>Shipping Address:</h2>
         <label>
-          City:
-          <input
-            minLength="1"
-            style={{ width: "300px" }}
-            value={city}
-            onChange={(event) => setCity(event.target.value)}
-          />
-        </label>
-        <label>
           Street:
           <input
             minLength="1"
@@ -121,6 +142,33 @@ export default function Checkout() {
             style={{ width: "300px" }}
             value={number}
             onChange={(event) => setNumber(event.target.value)}
+          />
+        </label>
+        <label>
+          City:
+          <input
+            minLength="1"
+            style={{ width: "300px" }}
+            value={city}
+            onChange={(event) => setCity(event.target.value)}
+          />
+        </label>
+        <label>
+          State/Province:
+          <input
+            minLength="1"
+            style={{ width: "300px" }}
+            value={state}
+            onChange={(event) => setState(event.target.value)}
+          />
+        </label>
+        <label>
+          Country:
+          <input
+            minLength="1"
+            style={{ width: "300px" }}
+            value={country}
+            onChange={(event) => setCountry(event.target.value)}
           />
         </label>
         <label>

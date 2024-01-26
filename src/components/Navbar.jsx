@@ -13,6 +13,7 @@ export default function Navbar({
   productData,
   localUser,
   localCart,
+  cart,
 }) {
   const [search, setSearch] = useState("");
   console.log("cart", localCart);
@@ -56,7 +57,7 @@ export default function Navbar({
 
         <Link to={"/cart"} className="cart-link">
           <img id="cart-image" src={cartLogo} />
-          {localCart && <span className="cart-num">{localCart.length} </span>}
+          {localCart && <span className="cart-num">{cart.length} </span>}
         </Link>
         <div className="categories">
           <Link to={"/products/electronics"}>Electronics</Link>

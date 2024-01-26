@@ -309,3 +309,13 @@ button {
 .secret {
   color: aqua;
 }
+.message {
+  display: grid;
+  border-style: double;
+  border: black, 20px;
+  justify-content: center;
+  padding: 40px;
+  margin-top: 100px;
+  text-align: center;
+  background-color: aqua;
+}

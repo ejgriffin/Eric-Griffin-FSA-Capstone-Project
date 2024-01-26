@@ -15,12 +15,14 @@ import WomensClothing from "./components/WomensClothing";
 import Checkout from "./components/Checkout";
 import { getAllProducts } from "./api";
 import Footer from "./components/Footer";
+import Confirmation from "./components/Confirmation";
 
 function App() {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState([]);
   const [products, setProducts] = useState([]);
   const [productData, setProductData] = useState([]);
+  const [cart, setCart] = useState([]);
   const localCart = JSON.parse(localStorage.getItem("cart"));
   const localUser = localStorage.getItem("username");
 
@@ -53,6 +55,7 @@ function App() {
         setUser={setUser}
         localUser={localUser}
         localCart={localCart}
+        cart={cart}
       />
       <Footer />
       <Routes>
@@ -60,18 +63,28 @@ function App() {
         <Route path="/products" element={<Products products={products} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/success" element={<Success />} />
+        <Route path="/confirmation" element={<Confirmation />} />
         <Route
           path="/login"
           element={<Login setToken={setToken} setUser={setUser} />}
         />
         <Route
           path="/cart"
-          element={<ShoppingCart user={user} token={token} />}
+          element={
+            <ShoppingCart
+              user={user}
+              token={token}
+              cart={cart}
+              setCart={setCart}
+            />
+          }
         />
         <Route path="*" element={<Products />} />
         <Route
           path="/products/:id"
-          element={<SingleProduct user={user} token={token} />}
+          element={
+            <SingleProduct user={user} token={token} setCart={setCart} />
+          }
         />
         <Route path="/products/electronics" element={<Electronics />} />
         <Route path="/products/jewelry" element={<Jewelry />} />

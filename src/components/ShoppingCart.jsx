@@ -3,9 +3,7 @@ import { useState, useEffect } from "react";
 import { getProductById, getUserCart } from "../api";
 import { useNavigate } from "react-router-dom";
 
-export default function ShoppingCart({ user, token }) {
-  const [cart, setCart] = useState([]);
-
+export default function ShoppingCart({ user, token, cart, setCart }) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -127,20 +125,16 @@ export default function ShoppingCart({ user, token }) {
       {token && (
         <div>
           <div className="banana">
-            {/* {" "}
-            <span className="secret">Item Image</span>
-            <span>Item Name</span>
-            <span>Quantity</span>
-            <span>Price</span>
-            <span>Total</span> */}
             <table>
-              <tr>
-                <td className="secret">SECRET</td>
-                <td>Item Name</td>
-                <td>Quantity</td>
-                <td>Price</td>
-                <td>Total</td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td className="secret">SECRET</td>
+                  <td>Item Name</td>
+                  <td>Quantity</td>
+                  <td>Price</td>
+                  <td>Total</td>
+                </tr>
+              </tbody>
             </table>
           </div>
           {cart.map((product, index) => {
