@@ -27,8 +27,6 @@ export default function SingleProduct({
   }, []);
 
   function formatPrice(price) {
-    console.log("price", price);
-    console.log("singleProduct", singleProduct);
     if (singleProduct) {
       const roundedPrice = price.toFixed(2);
       return roundedPrice;

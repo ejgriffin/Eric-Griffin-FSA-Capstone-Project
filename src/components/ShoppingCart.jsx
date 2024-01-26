@@ -46,10 +46,10 @@ export default function ShoppingCart({
     navigate("/checkout");
   }
 
-  function formatPrice(price) {
+  const formatPrice = (price) => {
     const roundedPrice = price.toFixed(2);
     return roundedPrice;
-  }
+  };
 
   function totalProductPrice(product) {
     const total = product.quantity * product.price;

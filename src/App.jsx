@@ -24,54 +24,9 @@ function App() {
   const [productData, setProductData] = useState([]);
   const [cart, setCart] = useState([]);
   const [cartNum, setCartNum] = useState(0);
+
   const localCart = JSON.parse(localStorage.getItem("cart"));
   const localUser = localStorage.getItem("username");
-
-  // function cartQuantity() {
-  //   const cartInStorage = JSON.parse(localStorage.getItem("cart"));
-  //   if (cartInStorage) {
-  //     let quantity = 0;
-  //     for (let i = 0; i < cartInStorage.length; i++) {
-  //       quantity += cartInStorage[i].quantity * cartInStorage.length;
-  //     }
-
-  //     return cartQuantity(quantity);
-  //   }
-  // }
-  // useEffect(() => {
-  //   function cartQuantity() {
-  //     const cartInStorage = JSON.parse(localStorage.getItem("cart"));
-  //     if (cartInStorage) {
-  //       let quantity = 0;
-  //       for (let i = 0; i < cartInStorage.length; i++) {
-  //         quantity += cartInStorage[i].quantity;
-  //       }
-  //       return quantity; // Return the calculated quantity
-  //     }
-  //     return 0; // Return 0 if there is no cart in storage
-  //   }
-
-  //   const newQuan = cartQuantity();
-  //   setCartNum(newQuan);
-  //   console.log("cartNum", newQuan); // Use newQuan instead of cartNum
-  // }, []); // Add dependencies if needed
-
-  // function cartQuantity() {
-  //   const cartInStorage = JSON.parse(localStorage.getItem("cart"));
-  //   if (cartInStorage) {
-  //     let quantity = 0;
-  //     for (let i = 0; i < cartInStorage.length; i++) {
-  //       quantity += cartInStorage[i].quantity;
-  //     }
-  //     return quantity; // Return the calculated quantity
-  //   }
-  //   return 0; // Return 0 if there is no cart in storage
-  // }
-
-  // // Call cartQuantity when the component renders
-  // const newQuan = cartQuantity();
-  // setCartNum(newQuan);
-  // console.log("cartNum", newQuan);
 
   const cartQuantity = () => {
     const cartInStorage = JSON.parse(localStorage.getItem("cart"));
@@ -84,11 +39,6 @@ function App() {
     }
     return 0;
   };
-
-  useEffect(() => {
-    const newQuan = cartQuantity();
-    setCartNum(newQuan);
-  }, []); // Add dependencies if needed
 
   useEffect(() => {
     const localToken = localStorage.getItem("token");
