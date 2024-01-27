@@ -33,6 +33,11 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const localUser = localStorage.getItem("user");
+    if (localUser !== undefined) setUser(localUser);
+  }, []);
+
+  useEffect(() => {
     async function getProductData() {
       try {
         const products = await getAllProducts();
