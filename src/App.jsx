@@ -16,11 +16,10 @@ import Checkout from "./components/Checkout";
 import { getAllProducts } from "./api";
 import Footer from "./components/Footer";
 import Confirmation from "./components/Confirmation";
-import { ThreeDots } from "react-loader-spinner";
 
 function App() {
   const [token, setToken] = useState(null);
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(null);
   const [products, setProducts] = useState([]);
   const [productData, setProductData] = useState([]);
   const [cart, setCart] = useState([]);
@@ -29,11 +28,8 @@ function App() {
   const localUser = localStorage.getItem("username");
 
   useEffect(() => {
-    const localUser = JSON.parse(localStorage.getItem("user"));
-
-    if (!localUser) {
-      localStorage.removeItem("cart");
-    }
+    const localToken = localStorage.getItem("token");
+    if (localToken !== undefined) setToken(localToken);
   }, []);
 
   useEffect(() => {

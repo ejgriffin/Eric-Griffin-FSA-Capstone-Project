@@ -28,10 +28,10 @@ export default function ShoppingCart({
   useEffect(() => {
     async function loadUserCart() {
       try {
-        if (user && localUser) {
+        if (user) {
           const results = await getUserCart(user?.id);
           const localCart = localStorage.getItem("cart");
-          if (!localCart) {
+          if (!localCart && user && user.id) {
             const cartItems = await Promise.all(
               results[0].products.map((item) => getProductById(item.productId))
             );
@@ -165,40 +165,41 @@ export default function ShoppingCart({
             </table>
           </div>
 
-          {cart.map((product, index) => {
-            return (
-              <div className="cart-container" key={index}>
-                <img
-                  className="productImage2"
-                  src={product.image}
-                  alt={product.title}
-                  width="100"
-                ></img>
-                <h3>{product.title}</h3>
+          {cart &&
+            cart.map((product, index) => {
+              return (
+                <div className="cart-container" key={index}>
+                  <img
+                    className="productImage2"
+                    src={product.image}
+                    alt={product.title}
+                    width="100"
+                  ></img>
+                  <h3>{product.title}</h3>
 
-                <div>
-                  <button onClick={() => increaseProductCount(product)}>
-                    {" "}
-                    +{" "}
-                  </button>
-                  <button>{product.quantity}</button>
-                  <button onClick={() => decreaseProductCount(product)}>
-                    {" "}
-                    -{" "}
-                  </button>
+                  <div>
+                    <button onClick={() => increaseProductCount(product)}>
+                      {" "}
+                      +{" "}
+                    </button>
+                    <button>{product.quantity}</button>
+                    <button onClick={() => decreaseProductCount(product)}>
+                      {" "}
+                      -{" "}
+                    </button>
+                  </div>
+                  <div>
+                    <span>${formatPrice(product.price)}</span>
+                  </div>
+                  <div>
+                    <span>${totalProductPrice(product)}</span>
+                    <button onClick={() => removeItemFromCart(product)}>
+                      Remove
+                    </button>
+                  </div>
                 </div>
-                <div>
-                  <span>${formatPrice(product.price)}</span>
-                </div>
-                <div>
-                  <span>${totalProductPrice(product)}</span>
-                  <button onClick={() => removeItemFromCart(product)}>
-                    Remove
-                  </button>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
           <div className="total">
             <span>Total Price of your Cart:</span>
             <span>$ {totalCartPrice()}</span>

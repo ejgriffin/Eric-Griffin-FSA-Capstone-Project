@@ -91,21 +91,6 @@ export const loginUser = async (userObj) => {
   }
 };
 
-export const getUser = async (token) => {
-  try {
-    const rsp = await fetch(`${APIURL}/auth/login`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const json = await rsp.json();
-    return json;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export const getAllUsers = async () => {
   try {
     const response = await fetch(`${APIURL}/users`);

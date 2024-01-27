@@ -58,7 +58,7 @@ export default function Navbar({
                 setUser(null);
                 setToken(null);
                 setCartNum(null);
-                window.location.reload();
+                // window.location.reload();
               }}
             >
               Logout
