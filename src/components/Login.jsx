@@ -58,6 +58,7 @@ export default function Login({ setToken, setUser }) {
         </label>
         <button className="login-button">Login</button>
       </form>
+      <p>-or-</p>
       <div className="register-link">
         <Link to={"/register"}>Register a New Account</Link>
       </div>

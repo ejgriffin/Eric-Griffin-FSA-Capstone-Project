@@ -108,6 +108,8 @@ function App() {
               token={token}
               setCart={setCart}
               setCartNum={setCartNum}
+              loading={loading}
+              setLoading={setLoading}
             />
           }
         />

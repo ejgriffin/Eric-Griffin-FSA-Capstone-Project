@@ -2,8 +2,16 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../api";
+import { ThreeDots } from "react-loader-spinner";
 
-export default function SingleProduct({ user, token, setCart, setCartNum }) {
+export default function SingleProduct({
+  user,
+  token,
+  setCart,
+  setCartNum,
+  loading,
+  setLoading,
+}) {
   const [singleProduct, setSingleProduct] = useState(null);
   const { id } = useParams();
 
@@ -13,6 +21,7 @@ export default function SingleProduct({ user, token, setCart, setCartNum }) {
         const productObj = await getProductById(id);
 
         setSingleProduct(productObj);
+        setLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -83,35 +92,53 @@ export default function SingleProduct({ user, token, setCart, setCartNum }) {
   }, []); // Add dependencies if needed
 
   return (
-    <div className="single-product">
-      <div className="single-product-img">
-        <img
-          className="productImage2"
-          src={singleProduct?.image}
-          alt={singleProduct?.title}
-          width="400"
-        ></img>
-      </div>
-      <div className="single-product-text">
-        <h1>{singleProduct?.title}</h1>
-        <hr></hr>
-        <h3>{singleProduct?.category}</h3>
-        <hr></hr>
-        <p>{singleProduct?.description}</p>
-        <hr></hr>
-        <h2>${formatPrice(singleProduct?.price)}</h2>
-        <hr></hr>
-        {!token && (
-          <h3 className="login-msg">
-            You must be logged in to add items to cart!
-          </h3>
-        )}
-        {token && (
-          <button className="big-button" onClick={addToCart}>
-            Add to Cart
-          </button>
-        )}
-      </div>
+    <div>
+      {loading && (
+        <div className="is-loading">
+          <ThreeDots
+            visible={true}
+            height="80"
+            width="80"
+            color="#4fa94d"
+            radius="9"
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
+        </div>
+      )}
+      {!loading && (
+        <div className="single-product">
+          <div className="single-product-img">
+            <img
+              className="productImage2"
+              src={singleProduct?.image}
+              alt={singleProduct?.title}
+              width="400"
+            ></img>
+          </div>
+          <div className="single-product-text">
+            <h1>{singleProduct?.title}</h1>
+            <hr></hr>
+            <h3>{singleProduct?.category}</h3>
+            <hr></hr>
+            <p>{singleProduct?.description}</p>
+            <hr></hr>
+            <h2>${formatPrice(singleProduct?.price)}</h2>
+            <hr></hr>
+            {!token && (
+              <h3 className="login-msg">
+                You must be logged in to add items to cart!
+              </h3>
+            )}
+            {token && (
+              <button className="big-button" onClick={addToCart}>
+                Add to Cart
+              </button>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
