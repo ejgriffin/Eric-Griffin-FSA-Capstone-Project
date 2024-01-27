@@ -3,6 +3,18 @@ import { useEffect } from "react";
 import { getProductById, getUserCart } from "../api";
 import { useNavigate } from "react-router-dom";
 
+const cartQuantity = () => {
+  const cartInStorage = JSON.parse(localStorage.getItem("cart"));
+  if (cartInStorage) {
+    let quantity = 0;
+    for (let i = 0; i < cartInStorage.length; i++) {
+      quantity += cartInStorage[i].quantity;
+    }
+    return quantity;
+  }
+  return 0;
+};
+
 export default function ShoppingCart({
   user,
   token,
@@ -12,18 +24,6 @@ export default function ShoppingCart({
   localUser,
 }) {
   const navigate = useNavigate();
-
-  const cartQuantity = () => {
-    const cartInStorage = JSON.parse(localStorage.getItem("cart"));
-    if (cartInStorage) {
-      let quantity = 0;
-      for (let i = 0; i < cartInStorage.length; i++) {
-        quantity += cartInStorage[i].quantity;
-      }
-      return quantity;
-    }
-    return 0;
-  };
 
   useEffect(() => {
     async function loadUserCart() {
@@ -164,6 +164,7 @@ export default function ShoppingCart({
               </tbody>
             </table>
           </div>
+
           {cart.map((product, index) => {
             return (
               <div className="cart-container" key={index}>
