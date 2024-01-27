@@ -16,7 +16,7 @@ import Checkout from "./components/Checkout";
 import { getAllProducts } from "./api";
 import Footer from "./components/Footer";
 import Confirmation from "./components/Confirmation";
-import Logout from "./components/Logout";
+import { ThreeDots } from "react-loader-spinner";
 
 function App() {
   const [token, setToken] = useState(null);
@@ -25,6 +25,7 @@ function App() {
   const [productData, setProductData] = useState([]);
   const [cart, setCart] = useState([]);
   const [cartNum, setCartNum] = useState(0);
+  const [loading, setLoading] = useState(true);
   const localUser = localStorage.getItem("username");
 
   useEffect(() => {
@@ -41,10 +42,12 @@ function App() {
         const products = await getAllProducts();
         setProducts(products);
         setProductData(products);
+        setLoading(false);
       } catch (err) {
         console.log(err);
       }
     }
+
     getProductData();
   }, []);
 
@@ -64,8 +67,14 @@ function App() {
       />
       <Footer />
       <Routes>
-        <Route path="/" element={<Products products={products} />} />
-        <Route path="/products" element={<Products products={products} />} />
+        <Route
+          path="/"
+          element={<Products products={products} loading={loading} />}
+        />
+        <Route
+          path="/products"
+          element={<Products products={products} loading={loading} />}
+        />
         <Route path="/register" element={<Register />} />
         <Route path="/success" element={<Success />} />
         <Route path="/confirmation" element={<Confirmation />} />
@@ -87,7 +96,10 @@ function App() {
             />
           }
         />
-        <Route path="*" element={<Products />} />
+        <Route
+          path="*"
+          element={<Products products={products} loading={loading} />}
+        />
         <Route
           path="/products/:id"
           element={
@@ -99,10 +111,22 @@ function App() {
             />
           }
         />
-        <Route path="/products/electronics" element={<Electronics />} />
-        <Route path="/products/jewelry" element={<Jewelry />} />
-        <Route path="/products/mensclothing" element={<MensClothing />} />
-        <Route path="/products/womensclothing" element={<WomensClothing />} />
+        <Route
+          path="/products/electronics"
+          element={<Electronics loading={loading} setLoading={setLoading} />}
+        />
+        <Route
+          path="/products/jewelry"
+          element={<Jewelry loading={loading} setLoading={setLoading} />}
+        />
+        <Route
+          path="/products/mensclothing"
+          element={<MensClothing loading={loading} setLoading={setLoading} />}
+        />
+        <Route
+          path="/products/womensclothing"
+          element={<WomensClothing loading={loading} setLoading={setLoading} />}
+        />
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </BrowserRouter>
