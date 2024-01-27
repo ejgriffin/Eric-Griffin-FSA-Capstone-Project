@@ -16,6 +16,7 @@ import Checkout from "./components/Checkout";
 import { getAllProducts } from "./api";
 import Footer from "./components/Footer";
 import Confirmation from "./components/Confirmation";
+import Logout from "./components/Logout";
 
 function App() {
   const [token, setToken] = useState(null);
@@ -24,25 +25,14 @@ function App() {
   const [productData, setProductData] = useState([]);
   const [cart, setCart] = useState([]);
   const [cartNum, setCartNum] = useState(0);
-
-  const localCart = JSON.parse(localStorage.getItem("cart"));
   const localUser = localStorage.getItem("username");
 
-  const cartQuantity = () => {
-    const cartInStorage = JSON.parse(localStorage.getItem("cart"));
-    if (cartInStorage) {
-      let quantity = 0;
-      for (let i = 0; i < cartInStorage.length; i++) {
-        quantity += cartInStorage[i].quantity;
-      }
-      return quantity;
-    }
-    return 0;
-  };
-
   useEffect(() => {
-    const localToken = localStorage.getItem("token");
-    if (localToken !== undefined) setToken(localToken);
+    const localUser = JSON.parse(localStorage.getItem("user"));
+
+    if (!localUser) {
+      localStorage.removeItem("cart");
+    }
   }, []);
 
   useEffect(() => {
@@ -67,9 +57,10 @@ function App() {
         setToken={setToken}
         setUser={setUser}
         localUser={localUser}
-        localCart={localCart}
         cart={cart}
         cartNum={cartNum}
+        setCartNum={setCartNum}
+        setCart={setCart}
       />
       <Footer />
       <Routes>
@@ -82,6 +73,7 @@ function App() {
           path="/login"
           element={<Login setToken={setToken} setUser={setUser} />}
         />
+
         <Route
           path="/cart"
           element={
@@ -91,7 +83,7 @@ function App() {
               cart={cart}
               setCart={setCart}
               setCartNum={setCartNum}
-              cartQuantity={cartQuantity}
+              localUser={localUser}
             />
           }
         />
@@ -104,7 +96,6 @@ function App() {
               token={token}
               setCart={setCart}
               setCartNum={setCartNum}
-              cartQuantity={cartQuantity}
             />
           }
         />

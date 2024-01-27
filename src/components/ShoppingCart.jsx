@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { getProductById, getUserCart } from "../api";
 import { useNavigate } from "react-router-dom";
 
@@ -8,32 +8,46 @@ export default function ShoppingCart({
   token,
   cart,
   setCart,
-  cartQuantity,
   setCartNum,
+  localUser,
 }) {
   const navigate = useNavigate();
+
+  const cartQuantity = () => {
+    const cartInStorage = JSON.parse(localStorage.getItem("cart"));
+    if (cartInStorage) {
+      let quantity = 0;
+      for (let i = 0; i < cartInStorage.length; i++) {
+        quantity += cartInStorage[i].quantity;
+      }
+      return quantity;
+    }
+    return 0;
+  };
 
   useEffect(() => {
     async function loadUserCart() {
       try {
-        const results = await getUserCart(user?.id);
-        const localCart = localStorage.getItem("cart");
-        if (!localCart) {
-          const cartItems = await Promise.all(
-            results[0].products.map((item) => getProductById(item.productId))
-          );
-          const products = results[0].products;
-          console.log(products[0]);
-          const cartWithQuantities = cartItems.map((item, index) => ({
-            ...item,
-            quantity: products[index].quantity,
-          }));
-          localStorage.setItem("cart", JSON.stringify(cartWithQuantities));
-          setCart(cartWithQuantities);
-        } else {
-          setCart(JSON.parse(localCart));
-          const updatedQuantity = cartQuantity();
-          setCartNum(updatedQuantity);
+        if (user && localUser) {
+          const results = await getUserCart(user?.id);
+          const localCart = localStorage.getItem("cart");
+          if (!localCart) {
+            const cartItems = await Promise.all(
+              results[0].products.map((item) => getProductById(item.productId))
+            );
+            const products = results[0].products;
+            console.log(products[0]);
+            const cartWithQuantities = cartItems.map((item, index) => ({
+              ...item,
+              quantity: products[index].quantity,
+            }));
+            localStorage.setItem("cart", JSON.stringify(cartWithQuantities));
+            setCart(cartWithQuantities);
+          } else {
+            setCart(JSON.parse(localCart));
+            const updatedQuantity = cartQuantity();
+            setCartNum(updatedQuantity);
+          }
         }
       } catch (err) {
         console.log(err);
@@ -79,7 +93,6 @@ export default function ShoppingCart({
   }
 
   function increaseProductCount(product) {
-    console.log("product", product);
     const id = product.id;
     const cartInStorage = JSON.parse(localStorage.getItem("cart"));
     // check if item is in cart
@@ -104,7 +117,6 @@ export default function ShoppingCart({
   }
 
   function decreaseProductCount(product) {
-    console.log("product", product);
     const id = product.id;
     const cartInStorage = JSON.parse(localStorage.getItem("cart"));
     // check if item is in cart

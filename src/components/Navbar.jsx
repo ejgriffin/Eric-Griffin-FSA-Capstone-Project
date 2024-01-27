@@ -4,6 +4,7 @@ import cartLogo from "./assets/cart.png";
 import { Link } from "react-router-dom";
 import Searchbar from "./Searchbar";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar({
   token,
@@ -12,11 +13,13 @@ export default function Navbar({
   setProducts,
   productData,
   localUser,
-  localCart,
   cart,
   cartNum,
+  setCart,
+  setCartNum,
 }) {
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -46,9 +49,16 @@ export default function Navbar({
             <button
               to="/login"
               onClick={() => {
+                navigate("/");
+                localStorage.removeItem("cart");
+                localStorage.removeItem("username");
+                localStorage.removeItem("token");
+
+                setCart(null);
                 setUser(null);
-                localStorage.clear();
                 setToken(null);
+                setCartNum(null);
+                window.location.reload();
               }}
             >
               Logout
@@ -58,7 +68,7 @@ export default function Navbar({
 
         <Link to={"/cart"} className="cart-link">
           <img id="cart-image" src={cartLogo} />
-          {localCart && <span className="cart-num">{cartNum} </span>}
+          {cart && cartNum != 0 && <span className="cart-num">{cartNum} </span>}
         </Link>
         <div className="categories">
           <Link to={"/products/electronics"}>Electronics</Link>

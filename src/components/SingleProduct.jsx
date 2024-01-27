@@ -3,13 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../api";
 
-export default function SingleProduct({
-  user,
-  token,
-  setCart,
-  setCartNum,
-  cartQuantity,
-}) {
+export default function SingleProduct({ user, token, setCart, setCartNum }) {
   const [singleProduct, setSingleProduct] = useState(null);
   const { id } = useParams();
 
@@ -17,7 +11,7 @@ export default function SingleProduct({
     async function getProductData() {
       try {
         const productObj = await getProductById(id);
-        console.log(productObj);
+
         setSingleProduct(productObj);
       } catch (err) {
         console.log(err);
@@ -32,6 +26,17 @@ export default function SingleProduct({
       return roundedPrice;
     }
   }
+  const cartQuantity = () => {
+    const cartInStorage = JSON.parse(localStorage.getItem("cart"));
+    if (cartInStorage) {
+      let quantity = 0;
+      for (let i = 0; i < cartInStorage.length; i++) {
+        quantity += cartInStorage[i].quantity;
+      }
+      return quantity;
+    }
+    return 0;
+  };
 
   function addToCart() {
     let cart = localStorage.getItem("cart");
@@ -42,7 +47,7 @@ export default function SingleProduct({
     const cartInStorage = JSON.parse(localStorage.getItem("cart"));
     // check if item is in cart
     const result = cartInStorage.find((item) => item.id == id);
-    console.log(result);
+
     if (!result) {
       cartInStorage.push({ ...singleProduct, quantity: 1 });
       localStorage.setItem("cart", JSON.stringify(cartInStorage));
@@ -75,7 +80,6 @@ export default function SingleProduct({
 
     const newQuan = cartQuantity();
     setCartNum(newQuan);
-    console.log("cartNum", newQuan); // Use newQuan instead of cartNum
   }, []); // Add dependencies if needed
 
   return (

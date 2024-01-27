@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Searchbar({
@@ -10,11 +10,10 @@ export default function Searchbar({
   const navigate = useNavigate();
 
   function handleSearch() {
-    console.log(productData);
     const results = productData.filter((product) =>
       product.title.toLowerCase().includes(search.toLowerCase())
     );
-    console.log(results);
+
     setProducts(results);
     navigate("/");
   }

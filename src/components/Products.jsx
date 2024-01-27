@@ -1,6 +1,5 @@
 import React from "react";
 
-import { useState, useEffect } from "react";
 import ProductLink from "./ProductLink";
 
 export default function Products({ products }) {
