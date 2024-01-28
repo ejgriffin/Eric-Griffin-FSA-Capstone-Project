@@ -27,7 +27,7 @@ export default function ShoppingCart({
   useEffect(() => {
     async function loadUserCart() {
       try {
-        if (user) {
+        if (user && token) {
           const results = await getUserCart(user?.id);
           const localCart = localStorage.getItem("cart");
           if (!localCart && user && user.id) {

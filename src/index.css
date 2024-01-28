@@ -245,6 +245,8 @@ span {
   padding-top: 4rem;
   margin-top: 4rem;
   background-color: aqua;
+  padding-bottom: 4rem;
+  margin-bottom: 4rem;
 }
 .cart-login-msg {
   display: flex;

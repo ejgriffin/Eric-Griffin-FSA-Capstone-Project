@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Checkout() {
@@ -16,10 +15,50 @@ export default function Checkout() {
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
+  const [error, setError] = useState("");
+
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Check if any of the required fields are empty
+    if (
+      !firstname ||
+      !lastname ||
+      !email ||
+      !cvv ||
+      !cardNumber ||
+      !expDate ||
+      !city ||
+      !street ||
+      !number ||
+      !zipcode ||
+      !phone ||
+      !country ||
+      !state
+    ) {
+      setError("Please fill in all required fields.");
+      return;
+    }
+
+    // Check if numeric fields are valid numbers
+    const numericFields = [
+      "cardNumber",
+      "expDate",
+      "cvv",
+      "number",
+      "zipcode",
+      "phone",
+    ];
+    for (const field of numericFields) {
+      if (isNaN(parseFloat(eval(field)))) {
+        setError(`${field} must be a valid number.`);
+        return;
+      }
+    }
+
+    // Your form processing logic here
     const checkoutInfo = {
       name: {
         firstname,
@@ -43,6 +82,7 @@ export default function Checkout() {
         zipcode,
       },
     };
+
     console.log("checkout", checkoutInfo);
     navigate("/confirmation");
   };
@@ -50,6 +90,7 @@ export default function Checkout() {
   return (
     <div className="checkout-page">
       <h1>Enter Payment Information</h1>
+      {error && <p className="error-message">{error}</p>}
       <form className="register-form" onSubmit={handleSubmit}>
         <h2>Name:</h2>
         <label>
@@ -182,6 +223,7 @@ export default function Checkout() {
         </label>
 
         <button className="big-button">Submit Payment</button>
+        {error && <p className="error-message">{error}</p>}
       </form>
     </div>
   );
