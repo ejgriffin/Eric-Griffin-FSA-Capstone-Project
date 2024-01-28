@@ -70,38 +70,6 @@ export const getAllWomens = async () => {
   }
 };
 
-export const loginUser = async (userObj) => {
-  try {
-    const rsp = await fetch(`${APIURL}/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: userObj.username,
-        password: userObj.password,
-      }),
-    });
-
-    const json = await rsp.json();
-    console.log(json);
-    return json.token;
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-export const getAllUsers = async () => {
-  try {
-    const response = await fetch(`${APIURL}/users`);
-    const json = await response.json();
-
-    return json;
-  } catch (error) {
-    throw error;
-  }
-};
-
 export const registerUser = async (userObj) => {
   try {
     const rsp = await fetch(`${APIURL}/users`, {

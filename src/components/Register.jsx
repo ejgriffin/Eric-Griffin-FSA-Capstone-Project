@@ -16,11 +16,31 @@ export default function Register() {
   const [lat, setLat] = useState("");
   const [long, setLong] = useState("");
   const [phone, setPhone] = useState("");
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Check if any of the required fields are empty
+    if (
+      !username ||
+      !password ||
+      !email ||
+      !phone ||
+      !firstname ||
+      !lastname ||
+      !city ||
+      !street ||
+      !number ||
+      !zipcode ||
+      !lat ||
+      !long
+    ) {
+      setError("Please fill in all required fields.");
+      return;
+    }
 
     const userObj = {
       email,
@@ -42,15 +62,21 @@ export default function Register() {
       },
       phone,
     };
-    const nextToken = await registerUser(userObj);
 
-    navigate("/success");
-    return nextToken;
+    try {
+      const nextToken = await registerUser(userObj);
+      navigate("/success");
+      return nextToken;
+    } catch (error) {
+      console.error(error);
+      setError("Registration failed. Please try again.");
+    }
   };
 
   return (
     <div className="register-page">
       <h1>Register a New Account</h1>
+      {error && <p className="error-message">{error}</p>}
       <form className="register-form" onSubmit={handleSubmit}>
         <label className="userreg">
           Username:

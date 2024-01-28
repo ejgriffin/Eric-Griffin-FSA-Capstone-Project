@@ -192,6 +192,13 @@ hr {
 button {
   cursor: pointer;
 }
+button:active {
+  background-color: white;
+}
+
+.big-button:active {
+  background-color: white;
+}
 
 .product-link:hover {
   box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.1);
@@ -324,4 +331,8 @@ button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.error-message {
+  color: red;
+  font-weight: bold;
 }
