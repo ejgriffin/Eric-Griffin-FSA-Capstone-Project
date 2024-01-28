@@ -10,6 +10,7 @@ export default function Searchbar({
   const navigate = useNavigate();
 
   function handleSearch() {
+    setSearch("");
     const results = productData.filter((product) =>
       product.title.toLowerCase().includes(search.toLowerCase())
     );
