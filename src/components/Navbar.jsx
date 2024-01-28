@@ -50,15 +50,13 @@ export default function Navbar({
               to="/login"
               onClick={() => {
                 navigate("/");
-                localStorage.removeItem("cart");
-                localStorage.removeItem("username");
-                localStorage.removeItem("token");
+                localStorage.clear();
 
                 setCart(null);
                 setUser(null);
                 setToken(null);
-                setCartNum(null);
-                // window.location.reload();
+                setCartNum(0);
+                window.location.reload();
               }}
             >
               Logout
