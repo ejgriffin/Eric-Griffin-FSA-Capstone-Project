@@ -23,7 +23,6 @@ export default function Searchbar({
     <div className="search-container">
       <input
         type="search"
-        style={{ width: "800px" }}
         name="src"
         placeholder="Search for Products"
         value={search}
