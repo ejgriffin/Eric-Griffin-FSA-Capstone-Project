@@ -825,7 +825,7 @@
   .products-list {
     display: grid;
     margin: 0 auto;
-    grid-template-columns: repeat(4, 30%);
+    grid-template-columns: repeat(3, 40%);
     grid-column-gap: 1px;
     justify-content: space-around;
     align-items: center;
@@ -1199,7 +1199,7 @@
   .products-list {
     display: grid;
     margin: 0 auto;
-    grid-template-columns: repeat(5, 25%);
+    grid-template-columns: repeat(4, 30%);
     grid-column-gap: 1px;
     justify-content: space-around;
     align-items: center;
@@ -1533,7 +1533,7 @@
     padding-right: 150px;
   }
   .search-container > input {
-    width: 1000px;
+    width: 800px;
   }
   .categories {
     position: fixed;
