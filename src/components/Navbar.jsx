@@ -22,7 +22,7 @@ export default function Navbar({
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="navigations">
       <div className="navbar">
         <Link
           className="store-link"
@@ -34,13 +34,14 @@ export default function Navbar({
         >
           <img id="logo-image" src={bananLogo} />
         </Link>
-        <Searchbar
-          setProducts={setProducts}
-          search={search}
-          setSearch={setSearch}
-          productData={productData}
-        />
-
+        <div className="searchd">
+          <Searchbar
+            setProducts={setProducts}
+            search={search}
+            setSearch={setSearch}
+            productData={productData}
+          />
+        </div>
         {!token && <Link to="/login">Login</Link>}
         {token && (
           <div className="logout">
@@ -68,12 +69,12 @@ export default function Navbar({
           <img id="cart-image" src={cartLogo} />
           {cart && cartNum != 0 && <span className="cart-num">{cartNum} </span>}
         </Link>
-        <div className="categories">
-          <Link to={"/products/electronics"}>Electronics</Link>
-          <Link to={"/products/jewelry"}>Jewelry</Link>
-          <Link to={"/products/mensclothing"}>Men's Clothing</Link>
-          <Link to={"/products/womensclothing"}>Women's Clothing</Link>
-        </div>
+      </div>
+      <div className="categories">
+        <Link to={"/products/electronics"}>Electronics</Link>
+        <Link to={"/products/jewelry"}>Jewelry</Link>
+        <Link to={"/products/mensclothing"}>Men's Clothing</Link>
+        <Link to={"/products/womensclothing"}>Women's Clothing</Link>
       </div>
     </div>
   );

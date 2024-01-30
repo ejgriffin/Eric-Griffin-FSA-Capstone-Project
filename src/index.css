@@ -17,6 +17,7 @@
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
+    font-size: large;
   }
   html {
     background-color: aquamarine;
@@ -29,7 +30,11 @@
   #cart-image {
     width: 30px;
   }
-
+  .navigations {
+    position: fixed;
+    right: 0;
+    top: 0;
+  }
   .navbar {
     position: fixed;
     right: 0;
@@ -38,13 +43,16 @@
     border-style: double;
     border: black, 20px;
     box-sizing: border-box;
-    display: inline-flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: aqua;
     padding-right: 50px;
     padding-left: 50px;
-    padding: 7px;
+    padding: 10px;
+  }
+  .searchd {
+    padding-right: 150px;
   }
   .search-container > input {
     width: 500px;
@@ -63,6 +71,15 @@
     align-items: center;
     background-color: aqua;
     padding: 5px;
+  }
+  .logout {
+    position: fixed;
+    right: 0;
+    top: 0;
+    display: flex;
+
+    align-items: center;
+    padding-right: 80px;
   }
 
   .products-list {
@@ -99,6 +116,7 @@
     padding: 30px;
     padding-top: 4rem;
     margin-top: 4rem;
+    margin-bottom: 4rem;
     background-color: aqua;
   }
   .single-product-text {
@@ -377,7 +395,7 @@
   }
 
   #logo-image {
-    width: 85px;
+    width: 100px;
   }
 
   #cart-image {
@@ -400,6 +418,9 @@
     padding-left: 50px;
     padding: 7px;
   }
+  .searchd {
+    padding-right: 150px;
+  }
   .search-container > input {
     width: 1000px;
   }
@@ -417,6 +438,14 @@
     align-items: center;
     background-color: aqua;
     padding: 5px;
+  }
+  .logout {
+    position: fixed;
+    right: 0;
+    top: 0;
+    display: inline-flex;
+    align-items: center;
+    padding-right: 150px;
   }
 
   .products-list {
@@ -453,6 +482,7 @@
     padding: 50px;
     padding-top: 4rem;
     margin-top: 4rem;
+    margin-bottom: 4rem;
     background-color: aqua;
   }
   .single-product-text {
@@ -598,10 +628,6 @@
     border-radius: 5px;
     margin-right: 10px;
     font-weight: bold;
-  }
-  .logout {
-    display: inline-flex;
-    align-items: center;
   }
 
   .store-link:hover {
