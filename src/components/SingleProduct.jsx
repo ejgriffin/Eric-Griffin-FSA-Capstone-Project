@@ -5,7 +5,6 @@ import { getProductById } from "../api";
 import { ThreeDots } from "react-loader-spinner";
 
 export default function SingleProduct({
-  user,
   token,
   setCart,
   setCartNum,
@@ -82,14 +81,14 @@ export default function SingleProduct({
         for (let i = 0; i < cartInStorage.length; i++) {
           quantity += cartInStorage[i].quantity;
         }
-        return quantity; // Return the calculated quantity
+        return quantity;
       }
-      return 0; // Return 0 if there is no cart in storage
+      return 0;
     }
 
     const newQuan = cartQuantity();
     setCartNum(newQuan);
-  }, []); // Add dependencies if needed
+  }, []);
 
   return (
     <div>

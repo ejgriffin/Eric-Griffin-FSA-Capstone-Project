@@ -105,7 +105,6 @@ function App() {
           path="/products/:id"
           element={
             <SingleProduct
-              user={user}
               token={token}
               setCart={setCart}
               setCartNum={setCartNum}

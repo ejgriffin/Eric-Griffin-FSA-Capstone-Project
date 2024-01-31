@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-// import { loginUser, getAllUsers } from "../api";
 import { Link, useNavigate } from "react-router-dom";
 const APIURL = "https://fakestoreapi.com";
 
