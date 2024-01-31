@@ -11,27 +11,6 @@ export default function Login({ setToken, setUser }) {
 
   const navigate = useNavigate();
 
-  // const loginUser = async (userObj) => {
-  //   try {
-  //     const rsp = await fetch(`${APIURL}/auth/login`, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         username: userObj.username,
-  //         password: userObj.password,
-  //       }),
-  //     });
-
-  //     const json = await rsp.json();
-  //     console.log(json);
-  //     return json.token;
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
   const loginUser = async (userObj) => {
     try {
       const rsp = await fetch(`${APIURL}/auth/login`, {

@@ -22,8 +22,8 @@ export default function Navbar({
   const navigate = useNavigate();
 
   return (
-    <div className="navigations">
-      <div className="navbar">
+    <div className="navbar">
+      <div className="navbar-top">
         <Link
           className="store-link"
           to={"/"}
@@ -64,12 +64,16 @@ export default function Navbar({
             </button>
           </div>
         )}
-
-        <Link to={"/cart"} className="cart-link">
-          <img id="cart-image" src={cartLogo} />
-          {cart && cartNum != 0 && <span className="cart-num">{cartNum} </span>}
-        </Link>
+        <div>
+          <Link className="cart-link" to={"/cart"}>
+            <img id="cart-image" src={cartLogo} />
+            {cart && cartNum != 0 && (
+              <span className="cart-num">{cartNum} </span>
+            )}
+          </Link>
+        </div>
       </div>
+
       <div className="categories">
         <Link to={"/products/electronics"}>Electronics</Link>
         <Link to={"/products/jewelry"}>Jewelry</Link>
