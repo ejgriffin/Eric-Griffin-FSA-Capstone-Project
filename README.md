@@ -2,7 +2,7 @@ Bananazon
 
 1.  This is the MVP for a basic e-commerce site called Bananazon (like Amazon but with a banana).
     using this API: https://fakestoreapi.com/
-2.  Here is a link to the deployed app: https://65baca5165b4cc2d35000eba--quiet-kheer-d140b5.netlify.app/
+2.  Here is a link to the deployed app: https://65bc1c8ada9c210097bb5b89--cheery-cranachan-4efb20.netlify.app/
 3.  The registration page creates an object id, but you cannot login with the new user as it doesn't get added to the API. Here is a list of users from the API that you can use to test:
 
         username: johnd,
