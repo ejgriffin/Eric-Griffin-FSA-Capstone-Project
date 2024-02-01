@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Checkout() {
+export default function Checkout({ setCart, setCartNum }) {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -84,6 +84,9 @@ export default function Checkout() {
     };
 
     console.log("checkout", checkoutInfo);
+    setCart([]);
+
+    setCartNum(0);
     navigate("/confirmation");
   };
 

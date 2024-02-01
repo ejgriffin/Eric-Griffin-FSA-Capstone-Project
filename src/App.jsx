@@ -129,7 +129,10 @@ function App() {
           path="/products/womensclothing"
           element={<WomensClothing loading={loading} setLoading={setLoading} />}
         />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route
+          path="/checkout"
+          element={<Checkout setCartNum={setCartNum} setCart={setCart} />}
+        />
       </Routes>
     </BrowserRouter>
   );
